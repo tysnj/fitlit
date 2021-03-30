@@ -40,8 +40,40 @@ describe("Sleep", function() {
     }])
   });
 
+  it("should be able to calculate a user's average hours slept per day over all time", function() {
+    expect(sleep.calculateAvgHours()).to.equal(5);
+  });
 
+  it("should be able to calculate a user's average sleep quality over all time", function() {
+    expect(sleep.calculateAvgQuality()).to.equal(3);
+  });
 
+  it("should be able to find how many hours a user slept on a specific day", function() {
+    expect(sleep.getSleepTotal(`2019/06/15`)).to.equal(6);
+  });
 
+  it("should be able to find a user's quality of sleep on a specific day", function() {
+    expect(sleep.getSleepQuality(`2019/06/15`)).to.equal(2.2);
+  });
+
+  it("should be able to calculate a user's average hours slept per day over a week", function() {
+    expect(sleep.calculateWeeklyAvgHours(`2019/06/16`)).to.equal(5);
+  });
+
+  it("should be able to calculate a user's daily sleep quality over a week", function() {
+    expect(sleep.calculateWeeklyQuality(`2019/06/16`)).to.equal([2.2, 3.8]);
+  });
+
+  it("should be able to calculate the average hours of sleep for all users over all time", function() {
+    expect(sleep.calculateAllAvgHours()).to.equal(6);
+  });
+
+  it("should be able to find all users with an average sleep quality greater than 3 for a given week", function() {
+    expect(sleep.findUsersWithSleepQuality(`2019/06/16`)).to.equal(2);
+  });
+
+  it("should be able to find the users that slept the most hours for a given date", function() {
+    expect(sleep.findUsersWithMostSleep(`2019/06/15`)).to.equal(2);
+  });
 
 })
