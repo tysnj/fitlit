@@ -21,6 +21,10 @@ describe("UserRepository", function() {
         expect(userRepo).to.be.an.instanceOf(UserRepository);
     });
 
+    it("should hold an array as a property", function() {
+        expect(userRepo.users).to.be.an("array");
+    });
+
     it("should contain Users", function() {
         expect(userRepo.users[0]).to.be.an.instanceOf(User);
     });
