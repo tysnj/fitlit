@@ -12,11 +12,11 @@ const User = require("../src/users");
 describe("Sleep", function() {
   let userRepo;
 
-  // beforeEach(function() {
-  //   userRepo = new UserRepository(users);
-  //   sleep = new Sleep(userRepo.users[0].id)
-  // });
-
+  beforeEach(function() {
+    userRepo = new UserRepository(users);
+    sleep = new Sleep(userRepo.users[0].id, sleepData)
+  });
+ 
   it("should be a function", function() {
     expect(Sleep).to.be.a("function");
   });
@@ -37,7 +37,7 @@ describe("Sleep", function() {
       "date": "2019/06/16",
       "hoursSlept": 4.1,
       "sleepQuality": 3.8
-    }])
+    }]);
   });
 
   it("should be able to calculate a user's average hours slept per day over all time", function() {
