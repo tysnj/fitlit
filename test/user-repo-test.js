@@ -4,13 +4,14 @@ const expect = chai.expect;
 const dataFile = require("../data/user-test-data");
 const users = dataFile.userTestData;
 const UserRepository = require("../src/user-repo");
+const User = require("../src/users")
 
 describe("UserRepository", function() {
-    let userRepo, users;
+    let userRepo;
 
-    // beforeEach(function() {
-    //   userRepo = new UserRepository(users)
-    // });
+    beforeEach(function() {
+      userRepo = new UserRepository(users)
+    });
 
     it("should be a function", function() {
        expect(UserRepository).to.be.a("function"); 
@@ -21,7 +22,7 @@ describe("UserRepository", function() {
     });
 
     it("should contain Users", function() {
-        expect(userRepo[0].to.be.an.instanceOf(User));
+        expect(userRepo.users[0]).to.be.an.instanceOf(User);
     });
 
     it("should be able to retrieve a user's details using their ID", function() {
