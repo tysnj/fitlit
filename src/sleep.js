@@ -35,11 +35,19 @@ class Sleep {
     }
     return week;
   }
+
   calculateWeeklyAvgHours(date) {
     const week = this.getWeekByDay(date);
-    week.filter(day => day === this.userSleep.date)
-    return Math.round(week.reduce((acc, datapoint) => acc + datapoint.hoursSlept, 0)) / week.length;
-  }
+    const weeklyData = [];
+    this.userSleep.filter(datapoint => {
+      week.forEach(day => {
+        if (day === datapoint.date) {
+          weeklyData.push(datapoint);
+        }
+      })
+    }) 
+  return Math.round(weeklyData.reduce((acc, datapoint) => acc + datapoint.hoursSlept, 0) / weeklyData.length);
+}
 
 }
 
