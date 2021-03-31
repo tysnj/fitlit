@@ -9,26 +9,27 @@ class Hydration {
     this.userHydration = data.filter(userEntry => userEntry.userID === userID);
   };
 
-  dailyAvgAllTime() {
+  getDailyAvgAllTime() {
     return this.userHydration.reduce((hydrationTotal, day) =>
     hydrationTotal + day.numOunces, 0)/ this.userHydration.length;
   };
 
-  ouncesOnDay(date = this.userHydration[this.userHydration.length - 1].date) {
+  getOzOnDay(date = this.userHydration[0].date) {
     const entry = this.userHydration.find(userEntry => userEntry.date === date);
     return entry.numOunces;
   };
 
-  dailyOverWeek(date = this.userHydration[this.userHydration.length - 1].date) {
+  getDailyOverWeek(date = this.userHydration[0].date) {
     const selectedDay = dayjs(date, "YYYY/MM/DD");
-    let weekStart = selectedDay.subtract(7, "day").format("YYYY/MM/DD");
-    return this.userHydration.reduce((acc, record) => {
+    let weekStart = selectedDay.subtract(6, "day").format("YYYY/MM/DD");
+    return this.userHydration.reduce((weeklyStats, record) => {
       if (record.date <= date && record.date >= weekStart) {
-        acc.push(record.numOunces);
+        weeklyStats.push({...record, ["day"]: dayjs(record.date, "YYYY/MM/DD").day()});
       }
-      return acc;
+      return weeklyStats;
     }, []);
-  }
+  };
+
 }
 
 if (typeof module !== "undefined") {

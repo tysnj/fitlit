@@ -7,7 +7,7 @@ const UserRepository = require("../src/user-repo");
 const User = require("../src/users")
 
 const dataFile = require("../data/hydration-test-data");
-const hydrationData = dataFile.hydrationTestData;
+const hydrationData = dataFile.hydrationTestData.reverse();
 const Hydration = require("../src/hydration");
 
 describe ("Hydration", function() {
@@ -31,30 +31,49 @@ describe ("Hydration", function() {
       [
         {
           "userID": 1,
-          "date": "2019/06/15",
-          "numOunces": 37
+          "date": "2019/06/16",
+          "numOunces": 69
         },
         {
           "userID": 1,
-          "date": "2019/06/16",
-          "numOunces": 69
+          "date": "2019/06/15",
+          "numOunces": 37
         }
       ]
     )
   });
 
   it("should get the user\'s daily hydration average over all time", function() {
-    expect(hydration.dailyAvgAllTime()).to.equal(53);
+    expect(hydration.getDailyAvgAllTime()).to.equal(53);
   });
 
   it("should get the user\'s hydration data for the specified day", function() {
-    expect(hydration.ouncesOnDay()).to.equal(69)
-    expect(hydration.ouncesOnDay(hydration.userHydration[0].date)).to.equal(37);
+    expect(hydration.getOzOnDay()).to.equal(69)
+    expect(hydration.getOzOnDay(hydration.userHydration[1].date)).to.equal(37);
   });
 
   it("should get the user\'s daily hydration data for the week leading to specified day", function() {
-    expect(hydration.dailyOverWeek()).to.deep.equal([37, 69]);
-    expect(hydration.dailyOverWeek("2019/06/15")).to.deep.equal([37]);
+    expect(hydration.getDailyOverWeek()).to.deep.equal([
+      {
+        "userID": 1,
+        "date": "2019/06/16",
+        "numOunces": 69,
+        "day": 0
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/15",
+        "numOunces": 37,
+        "day": 6
+      }]);
+    expect(hydration.getDailyOverWeek("2019/06/15")).to.deep.equal([
+      {
+        "userID": 1,
+        "date": "2019/06/15",
+        "numOunces": 37,
+        "day": 6
+      }
+    ]);
   });
 
 });
