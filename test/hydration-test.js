@@ -10,8 +10,6 @@ const dataFile = require("../data/hydration-test-data");
 const hydrationData = dataFile.hydrationTestData;
 const Hydration = require("../src/hydration");
 
-
-
 describe ("Hydration", function() {
   let user, hydration;
 
@@ -54,9 +52,9 @@ describe ("Hydration", function() {
     expect(hydration.ouncesOnDay(hydration.userHydration[0].date)).to.equal(37);
   });
 
-  it.skip("should get the user\'s daily hydration data for the week leading to specified day", function() {
+  it("should get the user\'s daily hydration data for the week leading to specified day", function() {
     expect(hydration.dailyOverWeek()).to.deep.equal([37, 69]);
-    expect(hydration.dailyOverWeek(hydration.userHydration[0].date)).to.deep.equal([37]);
+    expect(hydration.dailyOverWeek("2019/06/15")).to.deep.equal([37]);
   });
 
 });
