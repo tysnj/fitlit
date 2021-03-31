@@ -28,15 +28,15 @@ describe("Sleep", function() {
   it("should contain a single user's sleep data", function() {
     expect(sleep.userSleep).to.deep.equal([{
       "userID": 1,
-      "date": "2019/06/15",
-      "hoursSlept": 6.1,
-      "sleepQuality": 2.2
-    }, 
-    {
-      "userID": 1,
       "date": "2019/06/16",
       "hoursSlept": 4.1,
       "sleepQuality": 3.8
+    },
+    {
+    "userID": 1,
+    "date": "2019/06/15",
+    "hoursSlept": 6.1,
+    "sleepQuality": 2.2
     }]);
   });
 
@@ -56,12 +56,21 @@ describe("Sleep", function() {
     expect(sleep.getSleepQuality(`2019/06/15`)).to.equal(2.2);
   });
 
-  it("should be able to calculate a user's average hours slept per day over a week", function() {
-    expect(sleep.calculateWeeklyAvgHours(`2019/06/16`)).to.equal(5);
-  });
-
-  it("should be able to calculate a user's daily sleep quality over a week", function() {
-    expect(sleep.calculateWeeklyQuality(`2019/06/16`)).to.equal([2.2, 3.8]);
+  it("should be able to find a user's hours slept per day and sleep quality over a week", function() {
+    expect(sleep.getWeeklyData(`2019/06/16`)).to.deep.equal([{
+    "userID": 1,
+    "day": 6,
+    "date": "2019/06/15",
+    "hoursSlept": 6.1,
+    "sleepQuality": 2.2
+    },
+    {
+      "userID": 1,
+      "day": 0,
+      "date": "2019/06/16",
+      "hoursSlept": 4.1,
+      "sleepQuality": 3.8
+    }]);
   });
 
   it("should be able to calculate the average hours of sleep for all users over all time", function() {

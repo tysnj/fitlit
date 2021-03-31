@@ -5,8 +5,8 @@ dayjs().format();
 
 class Sleep {
   constructor(userID, dataFile) {
-    this.allUserSleep = dataFile;
-    this.userSleep = dataFile.filter(datapoint => datapoint.userID === userID); 
+    this.allUserSleep = dataFile.reverse();
+    this.userSleep = this.allUserSleep.filter(datapoint => datapoint.userID === userID); 
   }
 
   calculateAvgHours() {
@@ -27,30 +27,18 @@ class Sleep {
     return selectedDay.sleepQuality;
   }
 
-  getWeekByDay(date) {
+  getWeeklyData(date = this.userSleep[0].date) {
     const selectedDay = dayjs(date, "YYYY/MM/DD");
-    const week = [];
-    for (let i = 7; i >= 0; i--) {
-    week.push(selectedDay.subtract(i, 'day').format("YYYY/MM/DD"));
-    }
-    return week;
+    let weekStart = selectedDay.subtract(6, "day").format("YYYY/MM/DD");
+    return this.userSleep.reduce((weeklyStats, datapoint) => {
+      if (datapoint.date <= date && datapoint.date >= weekStart) {
+        weeklyStats.push({...datapoint, ["day"]: dayjs(datapoint.date, "YYYY/MM/DD").day()});
+      }
+      return weeklyStats;
+    }, []);
   }
 
-  calculateWeeklyAvgHours(date) {
-    const week = this.getWeekByDay(date);
-    const weeklyData = [];
-    this.userSleep.filter(datapoint => {
-      week.forEach(day => {
-        if (day === datapoint.date) {
-          weeklyData.push(datapoint);
-        }
-      })
-    }) 
-  return Math.round(weeklyData.reduce((acc, datapoint) => acc + datapoint.hoursSlept, 0) / weeklyData.length);
 }
-
-}
-
 if (typeof module !== "undefined") {
   module.exports = Sleep;
 };
