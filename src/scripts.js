@@ -1,7 +1,9 @@
+// const Hydration = require("./hydration");
 
 let allUsers = new UserRepository(userData); 
 let currentUser = allUsers.users[0]; 
 let date = `2019/09/22`;
+let currentHydrationData = new Hydration(currentUser.id, hydrationData );
 
 //CHART GLOBAL DEFAULTS
 Chart.defaults.global.defaultFontFamily = "Permanent Marker";
@@ -12,8 +14,11 @@ Chart.defaults.global.legend = false;
 //QUERY SELECTOR VARIABLES
 let userName = document.querySelector("#greeting");
 let userSection = document.querySelector("#userInfoSection");
-let userBar = document.querySelector("#userBar").getContext('2d');
+let waterLabel = document.querySelector("#waterLabel");
 
+//CHART QUERY SELECTORS
+let userBar = document.querySelector("#userBar").getContext('2d');
+let waterBar = document.querySelector("#userBar").getContext('2d');
 
 //CHARTS
 let userActivityBarChart = new Chart(userBar, {
@@ -56,6 +61,7 @@ function displayUserData() {
   greetUser();
   displayIDCard();
   calculateStepGoal();
+  showDailyWaterTotal();
 }
 
 function greetUser(userID = 1) {
@@ -81,5 +87,8 @@ function calculateStepGoal() {
   return allUsers.users.reduce((acc, user) => acc + user.dailyStepGoal,0) / allUsers.users.length;
 }
 
-
+function showDailyWaterTotal() {
+  let waterTotal = currentHydrationData.getOzOnDay(date);
+  waterLabel.innerHTML = `${waterTotal} oz.`
+}
 

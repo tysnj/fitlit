@@ -24,7 +24,7 @@
           </span>
           <span class="water">
             <img class="water-icon" src="../assets/water-glass.png">
-            <label class="water-label">Oz.</label>
+            <label id="waterLabel" class="water-label">Oz.</label>
           </span>
           <span class="sleep">
             <img class="sleep-icon" src="../assets/bed--v2.png">
@@ -78,6 +78,8 @@
         </div>
       </aside>
     </div>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script>dayjs().format()</script> 
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/hydration.js"></script>
     <script type="text/javascript" src="../data/sleep.js"></script>
@@ -85,6 +87,7 @@
     <script type="text/javascript" src="../data/user-test-data.js"></script>
     <script type="text/javascript" src="./users.js"></script>
     <script type="text/javascript" src="./user-repo.js"></script>
+    <script type="text/javascript" src="./hydration.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
