@@ -3,6 +3,7 @@ dayjs().format();
 
 class Activity {
   constructor(userID, data) {
+    this.allUserActivity = data;
     this.userActivity = data.filter(userEntry => userEntry.userID === userID);
   };
 
@@ -50,11 +51,19 @@ class Activity {
   };
 
   getStairClimbingRecord() {
-    // for each entry in userActivity
-    // find the greatest flightsOfStairs num
-    this.userActivity.sort((a, b) => b.flightsOfStairs)
-  }
-}
+    let sorted = this.userActivity.sort((a, b) => b.flightsOfStairs)
+    return sorted[0];
+  };
+
+  findAvgDataForAllByDay(date, dataType) {
+    const dayData = this.allUserActivity.filter(datapoint => datapoint.date === date);
+    return Math.round((dayData.reduce((acc, datapoint) => acc + datapoint[dataType], 0)) / dayData.length);
+  };
+
+};
+
+
+
 
 if (typeof module !== "undefined") {
   module.exports = Activity;

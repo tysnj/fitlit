@@ -90,9 +90,20 @@ describe("Activity", function() {
         "numSteps": 6637,
         "minutesActive": 175,
         "flightsOfStairs": 36,
-        "day": 0
       }
     )
+  });
+
+  it("should find average stairs climed across all users for a given date", function() {
+    expect(activity1.findAvgDataForAllByDay("2019/06/15", "flightsOfStairs")).to.equal(13)
+  });
+
+  it("should find average number of steps across all users for a given date", function() {
+    expect(activity1.findAvgDataForAllByDay("2019/06/15", "numSteps")).to.equal(4436)
+  });
+
+  it("should find average minutes active across all users for a given date", function() {
+    expect(activity1.findAvgDataForAllByDay("2019/06/15", "minutesActive")).to.equal(139)
   });
 
 })
