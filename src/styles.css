@@ -168,10 +168,21 @@
     background-color: green;
     position: fixed;
     bottom: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .right-side {
+    margin-right: 5px;
   }
 
-  .user-info {
+  .left-side {
+    margin-left: 5px;
+  }
 
+
+  .user-info {
+    
   }
 /* } */
 

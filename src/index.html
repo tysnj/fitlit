@@ -11,7 +11,8 @@
   <body>
     <header class="header">
       <h1 class="date">Date</h1>
-      <h2 id= "greeting" class="greeting">Hey</h2>
+      <h2 id="greeting" class="greeting">Hey</h2>
+      <h3 id="stepGoal" class="step-goal"></h3>
       <img class="calendar" src="../assets/calendar.png">
     </header>
     <div class="page">
@@ -36,7 +37,7 @@
             <h3 class="weekly-chart-title">Weekly Achievements</h3>
           </div>
           <canvas class="weekly-line"></canvas>
-          <canvas class="weekly-bar">
+          <canvas id="userBar" class="weekly-bar">
             <label class="user-bar">Your Totals</label>
           </canvas>
           <canvas class="weekly-bar">
@@ -64,8 +65,18 @@
         </section>
           </span>
       </main>
-      <aside class="user-info-section">
-        <p class="user-info">ID: Name: Address: Email: StrideLength: DailyStepGoal: Friends:</p>
+      <aside id="userInfoSection" class="user-info-section">
+        <div class="left-side">
+          <p class="user-info">ID</p>
+          <p class="user-info">Name</p>
+          <p class="user-info">Address</p>
+        </div>
+        <div class="right-side">
+          <p class="user-info">Email</p>
+          <p class="user-info">Stride Length</p>
+          <p class="user-info">Daily Step Goal</p>
+          <p class="user-info">Friends</p>
+        </div>
       </aside>
     </div>
     <script type="text/javascript" src="../data/users.js"></script>
