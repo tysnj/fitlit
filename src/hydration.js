@@ -24,7 +24,10 @@ class Hydration {
     let weekStart = selectedDay.subtract(6, "day").format("YYYY/MM/DD");
     return this.userHydration.reduce((weeklyStats, record) => {
       if (record.date <= date && record.date >= weekStart) {
-        weeklyStats.push({...record, ["day"]: dayjs(record.date, "YYYY/MM/DD").day()});
+        weeklyStats.push({
+          ...record,
+          ["day"]: dayjs(record.date, "YYYY/MM/DD").day()
+        });
       }
       return weeklyStats;
     }, []);

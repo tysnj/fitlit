@@ -9,7 +9,7 @@ const activityTestData = [
   {
     "userID": 2,
     "date": "2019/06/15",
-    "numSteps": 4294,
+    "numSteps": 5294,
     "minutesActive": 138,
     "flightsOfStairs": 10
   },
