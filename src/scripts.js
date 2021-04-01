@@ -1,24 +1,38 @@
+
 let allUsers = new UserRepository(userData); 
+let currentUser = allUsers.users[0]; 
+let date = `2019/09/22`;
 
 //QUERY SELECTOR VARIABLES
 let userName = document.querySelector("#greeting");
 let userSection = document.querySelector("#userInfoSection");
-let stepGoal = document.querySelector("#stepGoal");
-var ctx = document.getElementById('#userBar').getContext('2d');
+let userBar = document.querySelector("#userBar").getContext('2d');
+// var ctx = document.getElementById('#userBar').getContext('2d');
 
 //CHART VARS
-var myBarChart = new Chart(ctx, {
+let userActivityBarChart = new Chart(userBar, {
   type: 'horizontalBar',
-  data: data,
-  options: options
+  data: {
+    labels: ["Steps"],
+    datasets: [{
+      label: 'Steps',
+      data: [currentUser.dailyStepGoal]
+    }]
+  },
+  options: {}
 });
 
 //EVENT LISTENERS
 window.addEventListener("load", displayUserData);
 
-function getUserInfo(userID = 1) {
-  return allUsers.users.find(user => user.id === userID);
+function switchUser(userID) {
+    currentUser = allUsers.users.find(user => user.id === userID);
 }
+
+// function updateDate() {
+//   date = NEW DATE INPUT
+// }
+
 function displayUserData() {
   greetUser();
   displayIDCard();
@@ -26,12 +40,10 @@ function displayUserData() {
 }
 
 function greetUser(userID = 1) {
-  let currentUser = getUserInfo();
   userName.innerText = `Hey, ${currentUser.name.split(" ")[0]}`;
 }
 
 function displayIDCard(userID = 1) {
-  let currentUser = getUserInfo();
   userSection.innerHTML =        
   `<div class="left-side">
     <p class="user-info">ID: ${currentUser.id} </p>
@@ -47,7 +59,6 @@ function displayIDCard(userID = 1) {
 }
 
 function calculateStepGoal(userID = 1) {
-  let currentUser = getUserInfo();
   let avgStepGoal = (allUsers.users.reduce((acc, user) => acc + user.dailyStepGoal)) / allUsers.users.length;
 }
 
