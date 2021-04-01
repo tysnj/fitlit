@@ -11,7 +11,7 @@ const hydrationData = dataFile.hydrationTestData.reverse();
 const Hydration = require("../src/hydration");
 
 describe ("Hydration", function() {
-  let user, hydration;
+  let hydration;
 
   beforeEach(function() {
     userRepo = new UserRepository(users);
@@ -76,4 +76,4 @@ describe ("Hydration", function() {
     ]);
   });
 
-});
+})
