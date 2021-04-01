@@ -3,27 +3,46 @@ let allUsers = new UserRepository(userData);
 let currentUser = allUsers.users[0]; 
 let date = `2019/09/22`;
 
+//CHART GLOBAL DEFAULTS
+Chart.defaults.global.defaultFontFamily = "Permanent Marker";
+Chart.defaults.global.defaultFontSize = 10;
+Chart.defaults.global.title.fontSize = 12;
+Chart.defaults.global.legend = false;
+
 //QUERY SELECTOR VARIABLES
 let userName = document.querySelector("#greeting");
 let userSection = document.querySelector("#userInfoSection");
 let userBar = document.querySelector("#userBar").getContext('2d');
-// var ctx = document.getElementById('#userBar').getContext('2d');
 
-//CHART VARS
+
+//CHARTS
 let userActivityBarChart = new Chart(userBar, {
   type: 'horizontalBar',
   data: {
-    labels: ["Steps"],
+    labels: ["Your Goal", "Your Steps", "Avg Goal", "Avg Steps"],
     datasets: [{
-      label: 'Steps',
-      data: [currentUser.dailyStepGoal]
+      label: "Steps",
+      data: [currentUser.dailyStepGoal, 7000, calculateStepGoal(), 5500],
+      backgroundColor: [
+        "#f37981",
+        "#f3bf89",
+        "#f37981",
+        "#f3bf89"
+      ]
     }]
   },
-  options: {}
+  options: {
+    title: {
+      display: true,
+      text: "Daily Steps"
+    }
+  }
 });
 
 //EVENT LISTENERS
 window.addEventListener("load", displayUserData);
+
+//FUNCTIONS
 
 function switchUser(userID) {
     currentUser = allUsers.users.find(user => user.id === userID);
@@ -58,8 +77,8 @@ function displayIDCard(userID = 1) {
   </div>`
 }
 
-function calculateStepGoal(userID = 1) {
-  let avgStepGoal = (allUsers.users.reduce((acc, user) => acc + user.dailyStepGoal)) / allUsers.users.length;
+function calculateStepGoal() {
+  return allUsers.users.reduce((acc, user) => acc + user.dailyStepGoal,0) / allUsers.users.length;
 }
 
 
