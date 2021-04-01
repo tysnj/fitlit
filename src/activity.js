@@ -50,7 +50,9 @@ class Activity {
   };
 
   getStairClimbingRecord() {
-    
+    // for each entry in userActivity
+    // find the greatest flightsOfStairs num
+    this.userActivity.sort((a, b) => b.flightsOfStairs)
   }
 }
 

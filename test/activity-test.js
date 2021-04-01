@@ -82,7 +82,7 @@ describe("Activity", function() {
     ]);
   });
 
-  it("should find the users all-time stair climbing record", function() {
+  it("should find the user\'s all-time stair climbing record", function() {
     expect(activity1.getStairClimbingRecord()).to.deep.equal(
       {
         "userID": 1,
