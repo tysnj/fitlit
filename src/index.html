@@ -5,14 +5,13 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="styles.css">
       <link rel="preconnect" href="https://fonts.gstatic.com">
-      <!-- <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"> -->
       <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono&display=swap" rel="stylesheet">
       <title>FitLit</title>
   </head>
   <body>
     <header class="header">
       <h1 class="date">Date</h1>
-      <h2 class="greeting">Welcome</h2>
+      <h2 id="greeting" class="greeting">Hey</h2>
       <img class="calendar" src="../assets/calendar.png">
     </header>
     <div class="page">
@@ -37,7 +36,7 @@
             <h3 class="weekly-chart-title">Weekly Achievements</h3>
           </div>
           <canvas class="weekly-line"></canvas>
-          <canvas class="weekly-bar">
+          <canvas id="userBar" class="weekly-bar">
             <label class="user-bar">Your Totals</label>
           </canvas>
           <canvas class="weekly-bar">
@@ -65,14 +64,28 @@
         </section>
           </span>
       </main>
-      <aside class="user-info-section">
-        <p class="user-info">ID: Name: Address: Email: StrideLength: DailyStepGoal: Friends:</p>
+      <aside id="userInfoSection" class="user-info-section">
+        <div class="left-side">
+          <p class="user-info">ID</p>
+          <p class="user-info">Name</p>
+          <p class="user-info">Address</p>
+        </div>
+        <div class="right-side">
+          <p class="user-info">Email</p>
+          <p class="user-info">Stride Length</p>
+          <p class="user-info">Daily Step Goal</p>
+          <p class="user-info">Friends</p>
+        </div>
       </aside>
     </div>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/hydration.js"></script>
     <script type="text/javascript" src="../data/sleep.js"></script>
     <script type="text/javascript" src="../data/activity.js"></script>
+    <script type="text/javascript" src="../data/user-test-data.js"></script>
+    <script type="text/javascript" src="./users.js"></script>
+    <script type="text/javascript" src="./user-repo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html>
