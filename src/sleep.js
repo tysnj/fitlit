@@ -27,7 +27,7 @@ class Sleep {
     return selectedDay.sleepQuality;
   }
 
-  getWeeklyData(date = this.userSleep[0].date) {
+  getWeeklyDataForUser(date = this.userSleep[0].date) {
     const selectedDay = dayjs(date, "YYYY/MM/DD");
     let weekStart = selectedDay.subtract(6, "day").format("YYYY/MM/DD");
     return this.userSleep.reduce((weeklyStats, datapoint) => {
@@ -38,7 +38,45 @@ class Sleep {
     }, []);
   }
 
+  getWeeklyDataForAll(date = this.userSleep[0].date) {
+    const selectedDay = dayjs(date, "YYYY/MM/DD");
+    let weekStart = selectedDay.subtract(6, "day").format("YYYY/MM/DD");
+    return this.allUserSleep.reduce((weeklyStats, datapoint) => {
+      if (datapoint.date <= date && datapoint.date >= weekStart) {
+        weeklyStats.push({...datapoint, ["day"]: dayjs(datapoint.date, "YYYY/MM/DD").day()});
+      }
+      return weeklyStats;
+    }, []);
+  }
+
+
+  calculateAllAvgHours() {
+    return Math.round((this.allUserSleep.reduce((acc, datapoint) => acc + datapoint.hoursSlept, 0)) / this.allUserSleep.length);
 }
+
+  filterSleepQuality(date, userRepo) { 
+    const weeklyData = this.getWeeklyDataForAll(date);
+    const highQualityUsers = [];
+    userRepo.users.forEach(user => {
+      const userWeek = weeklyData.filter(day => user.id === day.userID);
+      const userTotal = userWeek.reduce((acc, userDay) => acc + userDay.sleepQuality,0);
+      if ((userTotal / userWeek.length) > 3) {
+        highQualityUsers.push(user.id);
+      }
+    })
+    return highQualityUsers.length;
+  }
+//filter all users file
+// return the object(s) with the highest value for datapoint.hoursSlept
+// add users of those objects to array
+
+  findUsersWithMostSleep(date = this.userSleep[0].date) {
+   const usersWithMostHoursSleep = [];
+   const dayData = this.allUserSleep.filter(datapoint => datapoint.date === date);
+   dayData.forEach()
+
+ }}
+
 if (typeof module !== "undefined") {
   module.exports = Sleep;
 };

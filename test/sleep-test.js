@@ -57,7 +57,7 @@ describe("Sleep", function() {
   });
 
   it("should be able to find a user's hours slept per day and sleep quality over a week", function() {
-    expect(sleep.getWeeklyData(`2019/06/16`)).to.deep.equal([{
+    expect(sleep.getWeeklyDataForUser(`2019/06/16`)).to.deep.equal([{
     "userID": 1,
     "day": 6,
     "date": "2019/06/15",
@@ -78,7 +78,7 @@ describe("Sleep", function() {
   });
 
   it("should be able to find all users with an average sleep quality greater than 3 for a given week", function() {
-    expect(sleep.findUsersWithSleepQuality(`2019/06/16`)).to.equal(2);
+    expect(sleep.filterSleepQuality(`2019/06/16`, userRepo)).to.equal(1);
   });
 
   it("should be able to find the users that slept the most hours for a given date", function() {
