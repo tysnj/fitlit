@@ -66,16 +66,20 @@ class Sleep {
     })
     return highQualityUsers.length;
   }
-//filter all users file
-// return the object(s) with the highest value for datapoint.hoursSlept
-// add users of those objects to array
 
   findUsersWithMostSleep(date = this.userSleep[0].date) {
    const usersWithMostHoursSleep = [];
    const dayData = this.allUserSleep.filter(datapoint => datapoint.date === date);
-   dayData.forEach()
-
- }}
+   const sortedSleepData = dayData.sort((a,b) => b.hoursSlept - a.hoursSlept);
+   usersWithMostHoursSleep.push(sortedSleepData[0].userID);
+   sortedSleepData.forEach(datapoint => {
+     if (datapoint.hoursSlept === sortedSleepData[0].hoursSlept && datapoint.userID !== sortedSleepData[0].userID) {
+       usersWithMostHoursSleep.push(datapoint.userID);
+     }
+   })
+   return usersWithMostHoursSleep;
+ }
+}
 
 if (typeof module !== "undefined") {
   module.exports = Sleep;

@@ -82,7 +82,7 @@ describe("Sleep", function() {
   });
 
   it("should be able to find the users that slept the most hours for a given date", function() {
-    expect(sleep.findUsersWithMostSleep(`2019/06/15`)).to.equal(2);
+    expect(sleep.findUsersWithMostSleep(`2019/06/15`)).to.deep.equal([2]);
   });
 
 })
