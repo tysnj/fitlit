@@ -2,11 +2,11 @@
 
 // const { weekdays } = require("dayjs/locale/*");
 
-let allUsers = new UserRepository(userData); 
-let currentUser = allUsers.users[0]; 
+let allUsers = new UserRepository(userData);
+let currentUser = allUsers.users[0];
 let date = `2019/09/22`;
-let currentHydrationData = new Hydration(currentUser.id, hydrationData );
-
+let currentHydrationData = new Hydration(currentUser.id, hydrationData);
+let currentSleepData = new Sleep(currentUser.id, sleepData);
 //CHART GLOBAL DEFAULTS
 Chart.defaults.global.defaultFontFamily = "Permanent Marker";
 Chart.defaults.global.defaultFontSize = 10;
@@ -18,10 +18,12 @@ Chart.defaults.global.defaultColor = "#f37981";
 let userName = document.querySelector("#greeting");
 let userSection = document.querySelector("#userInfoSection");
 let waterLabel = document.querySelector("#waterLabel");
+let sleepLabel = document.querySelector("#sleepLabel");
 
 //CHART QUERY SELECTORS
 let userBar = document.querySelector("#userBar").getContext('2d');
 let waterBar = document.querySelector("#waterBar").getContext('2d');
+let sleepBar = document.querySelector("#sleepBar").getContext('2d');
 
 //CHARTS
 let userActivityBarChart = new Chart(userBar, {
@@ -50,7 +52,7 @@ let userActivityBarChart = new Chart(userBar, {
 let waterBarChart = new Chart(waterBar, {
   type: 'bar',
   data: {
-    labels: [1,2,3,4,5,6,7],
+    labels: getWeeklyDateInfo(date),
     datasets: [{
       label: "Ounces",
       data: getWeeklyWaterTotals(date),
@@ -76,7 +78,55 @@ let waterBarChart = new Chart(waterBar, {
                   display: false //this will remove only the label
               }
           }]
-      }  
+      }
+  }
+});
+
+let sleepBarChart = new Chart(sleepBar, {
+  type: 'bar',
+  data: {
+    labels: getWeeklyDateInfo(date),
+    datasets: [{
+      label: "Quality",
+      type: "bar",
+      data: getWeeklySleepQual(date),
+      backgroundColor: [
+        "#f3bf89",
+        "#f3bf89",
+        "#f3bf89",
+        "#f3bf89",
+        "#f3bf89",
+        "#f3bf89",
+        "#f3bf89"
+      ]
+    },
+    {
+      label: "Hours",
+      data: getWeeklySleepHours(date),
+      backgroundColor: [
+        "#f37981",
+        "#f37981",
+        "#f37981",
+        "#f37981",
+        "#f37981",
+        "#f37981",
+        "#f37981"
+      ]
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Sleep This Week"
+    },
+    barValueSpacing:0,
+    scales: {
+          xAxes: [{
+              ticks: {
+                  display: false //this will remove only the label
+              }
+          }]
+      }
   }
 });
 
@@ -98,6 +148,7 @@ function displayUserData() {
   displayIDCard();
   calculateStepGoal();
   showDailyWaterTotal();
+  showDailySleepData();
 }
 
 function greetUser(userID = 1) {
@@ -105,7 +156,7 @@ function greetUser(userID = 1) {
 }
 
 function displayIDCard(userID = 1) {
-  userSection.innerHTML =        
+  userSection.innerHTML =
   `<div class="left-side">
     <p class="user-info">ID: ${currentUser.id} </p>
     <p class="user-info">Name: ${currentUser.name}</p>
@@ -130,9 +181,26 @@ function showDailyWaterTotal() {
 
 function getWeeklyWaterTotals(date) {
   let weeklyTotals = currentHydrationData.getDailyOverWeek(date);
-  console.log(weeklyTotals);
-  return weeklyTotals.map(day => day.numOunces); 
+  return weeklyTotals.map(day => day.numOunces);
  }
 
+ function showDailySleepData() {
+   let hoursSlept = currentSleepData.getSleepTotal(date);
+   let sleepQual = currentSleepData.getSleepQuality(date);
+   sleepLabel.innerHTML = `${hoursSlept} hours<br>${sleepQual}/5 stars`
+ }
 
- 
+ function getWeeklySleepHours(date) {
+   let weeklyTotals = currentSleepData.getWeeklyDataForUser(date);
+   return weeklyTotals.map(day => day.hoursSlept);
+  }
+
+  function getWeeklySleepQual(date) {
+    let weeklyTotals = currentSleepData.getWeeklyDataForUser(date);
+    return weeklyTotals.map(day => day.sleepQuality);
+   }
+
+   function getWeeklyDateInfo(date) {
+     let weeklyTotals = currentSleepData.getWeeklyDataForUser(date);
+     return weeklyTotals.map(day => day.date);
+    }
