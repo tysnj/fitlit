@@ -10,7 +10,7 @@ class UserRepository {
     }
 
     calculateAvgStepGoal() {
-        return (this.users.reduce((acc, user) => acc + user.dailyStepGoal, 0))/ this.users.length;      
+        return (this.users.reduce((acc, user) => acc + user.dailyStepGoal, 0))/ this.users.length;
     }
 }
 
