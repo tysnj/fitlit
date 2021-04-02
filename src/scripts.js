@@ -69,7 +69,14 @@ let waterBarChart = new Chart(waterBar, {
     title: {
       display: true,
       text: "Water This Week"
-    }
+    },
+    scales: {
+          xAxes: [{
+              ticks: {
+                  display: false //this will remove only the label
+              }
+          }]
+      }  
   }
 });
 
@@ -127,33 +134,5 @@ function getWeeklyWaterTotals(date) {
   return weeklyTotals.map(day => day.numOunces); 
  }
 
- function getDaysOfWeek(date) {
-   const week = currentHydrationData.getDailyOverWeek(date);
-   const weekDays = [];
-  return week.forEach(day =>  {
-   switch (day.day) {
-     case 0:
-       weekDays.push("Sunday");
-       break;
-     case 1:
-       weekDays.push("Monday");
-        break;
-     case 2:
-       weekDays.push("Tuesday");
-        break;
-     case 3:
-       weekDays.push("Wednesday");
-       break;
-     case 4:
-       weekDays.push("Thursday");
-       break; 
-       case 5:
-       weekDays.push("Friday");
-       break; 
-       case 6:
-       weekDays.push("Saturday");
-       break; 
-    }
-   })
-  }
+
  
