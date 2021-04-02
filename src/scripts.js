@@ -1,12 +1,11 @@
-// const Hydration = require("./hydration");
 
-// const { weekdays } = require("dayjs/locale/*");
 
 let allUsers = new UserRepository(userData);
 let currentUser = allUsers.users[0];
 let date = `2019/09/22`;
 let currentHydrationData = new Hydration(currentUser.id, hydrationData);
 let currentSleepData = new Sleep(currentUser.id, sleepData);
+let currentActivityData = new Activity(currentUser.id, activityData);
 //CHART GLOBAL DEFAULTS
 Chart.defaults.global.defaultFontFamily = "Permanent Marker";
 Chart.defaults.global.defaultFontSize = 10;
@@ -19,11 +18,13 @@ let userName = document.querySelector("#greeting");
 let userSection = document.querySelector("#userInfoSection");
 let waterLabel = document.querySelector("#waterLabel");
 let sleepLabel = document.querySelector("#sleepLabel");
+let stepsLabel = document.querySelector("#stepsLabel");
 
 //CHART QUERY SELECTORS
 let userBar = document.querySelector("#userBar").getContext('2d');
 let waterBar = document.querySelector("#waterBar").getContext('2d');
 let sleepBar = document.querySelector("#sleepBar").getContext('2d');
+let weeklyActivity = document.querySelector("#weeklyActivity").getContext('2d');
 
 //CHARTS
 let userActivityBarChart = new Chart(userBar, {
@@ -130,6 +131,43 @@ let sleepBarChart = new Chart(sleepBar, {
   }
 });
 
+let weeklyActivityChart = new Chart(weeklyActivity, {
+  type: "line",
+  data: {
+    labels: getWeeklyDateInfo(date),
+    datasets: [{
+      label: "Steps",
+      type: "line",
+      data: getUserStepsOverWeek(),
+      borderColor: "#f3bf89"
+    },
+    {
+      label: "Minutes",
+      data: getUserMinutesOverWeek(),
+    
+    },
+  {
+      label: "Minutes",
+      data: getUserStairsOverWeek(),
+    }]},
+  
+  options: {
+    title: {
+      display: true,
+      text: "Activity This Week"
+    },
+    barValueSpacing:0,
+    scales: {
+          xAxes: [{
+              ticks: {
+                  display: false //this will remove only the label
+              }
+          }]
+      }
+  }
+
+});
+
 //EVENT LISTENERS
 window.addEventListener("load", displayUserData);
 
@@ -149,6 +187,7 @@ function displayUserData() {
   calculateStepGoal();
   showDailyWaterTotal();
   showDailySleepData();
+  displayStepsToday(date);
 }
 
 function greetUser(userID = 1) {
@@ -204,3 +243,27 @@ function getWeeklyWaterTotals(date) {
      let weeklyTotals = currentSleepData.getWeeklyDataForUser(date);
      return weeklyTotals.map(day => day.date);
     }
+
+  function displayStepsToday(date) {
+      let dailySteps = currentActivityData.userActivity.find(day => day.date === date);
+      stepsLabel.innerHTML = `${dailySteps.numSteps} Steps`;
+  }
+
+  function getUserStepsOverWeek() {
+    let weeklyStats = currentActivityData.getWeeklyDataForUser(date);
+    return weeklyStats.map(day => day.numSteps/100);
+  }
+  
+  function getUserMinutesOverWeek() {
+    let weeklyStats = currentActivityData.getWeeklyDataForUser(date);
+    return weeklyStats.map(day => day.minutesActive);
+  }
+
+  function getUserStairsOverWeek() {
+    let weeklyStats = currentActivityData.getWeeklyDataForUser(date);
+    return weeklyStats.map(day => day.flightsOfStairs);
+  }
+
+
+
+  

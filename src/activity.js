@@ -1,5 +1,5 @@
-var dayjs = require('dayjs');
-dayjs().format();
+// var dayjs = require('dayjs');
+// dayjs().format();
 
 class Activity {
   constructor(userID, data) {
