@@ -14,13 +14,19 @@
     border: 0;
     font-family: "Roboto Mono";
     max-width: 100%;
-    height: 100%
+    height: 100%;
+    background-color: #043144;
+    border-color: #043144;
+    color: #D4E0E5;
+
   }
 
   .page {
     display: flex;
     flex-direction: column;
-    height: 100%
+    height: 100%;
+    margin-top: 10%;
+    border-top: 4px solid #1c5061;
   }
 
   /* Header Row */
@@ -28,6 +34,8 @@
     display: flex;
     justify-content: space-between;
     height: 5%;
+    margin-bottom: 5%;
+    
   }
 
   .date {
@@ -50,17 +58,26 @@
   .main {
     height: 100%;
     display: flex;
-    /* justify-content: center; */
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
   }
 
   /* Daily Section */
+  canvas {
+    background-color: #1c5061;
+    border-radius: 10px;
+    border-color: #1c5061;
+    margin-bottom: 5%;
+    
+  }
   .daily-stats {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     font-family: "Permanent Marker";
+    
   }
 
   .stats {
@@ -70,13 +87,14 @@
   .steps,
   .water,
   .sleep {
-    font-size: 10px;
+    font-size: 13px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid black;
+    border: 2px solid #1c5061;
     padding: 4px 15px 3px;
-    border-radius: 7px;
+    border-radius: 20px;
+    background-color: #1c5061;
   }
 
   .steps-icon,
@@ -111,13 +129,13 @@
   .weekly-line {
     height: 5em;
     width: 95%;
-    border: 2px solid black;
+    border: 2px solid #1c5061;
   }
 
   .weekly-bar {
     height: 3em;
     width: 95%;
-    border: 2px solid black;
+    border: 2px solid #1c5061;
   }
 
   .user-bar,
@@ -153,32 +171,50 @@
 
   .averages-section {
     display: flex;
+    justify-content: center;
     width: 95%;
     height: 20%;
   }
   .average-sleep-hours,
   .average-sleep-quality {
     display: flex;
+    font-family: "Permanent Marker";
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .avg-number {
+    font-size: 2rem;
+    border: 4px solid #f37981;
+    border-radius: 50%;
+    height: 100%;
+    width: 50%;
+    padding: 5%;
   }
 
   /* User Data Section  */
   .user-info-section {
-    background-color: green;
-    position: fixed;
+    background-color: #011F2C;
+    position: sticky;
     bottom: 0;
     display: flex;
-    justify-content: center;
+    align-items: space-around;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    opacity: 75%;
   }
   
   .right-side {
     margin-right: 5px;
+    margin-left: 5px;
   }
 
   .left-side {
     margin-left: 5px;
+    margin-right: 5px;
   }
 
 
