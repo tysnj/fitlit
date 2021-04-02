@@ -28,7 +28,7 @@
           </span>
           <span class="sleep">
             <img class="sleep-icon" src="../assets/bed--v2.png">
-            <label class="sleep-label">Hours</label>
+            <label id="sleepLabel" class="sleep-label">Hours</label>
           </span>
         </section>
         <section class="weekly-activity">
@@ -49,8 +49,8 @@
             <!-- <label class="water-chart"></label> -->
           </span>
           <span class="sleep-data">
-            <canvas class="vert-bar"></canvas>
-            <label class="sleep-chart">Sleep this Week</label>
+            <canvas id="sleepBar" class="vert-bar"></canvas>
+            <!-- <label class="sleep-chart">Sleep this Week</label> -->
           </span>
         </section>
         <section class="averages-section">
@@ -79,7 +79,7 @@
       </aside>
     </div>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-    <script>dayjs().format()</script> 
+    <script>dayjs().format()</script>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/hydration.js"></script>
     <script type="text/javascript" src="../data/sleep.js"></script>
@@ -88,6 +88,7 @@
     <script type="text/javascript" src="./users.js"></script>
     <script type="text/javascript" src="./user-repo.js"></script>
     <script type="text/javascript" src="./hydration.js"></script>
+    <script type="text/javascript" src="./sleep.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>

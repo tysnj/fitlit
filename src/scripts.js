@@ -52,7 +52,7 @@ let userActivityBarChart = new Chart(userBar, {
 let waterBarChart = new Chart(waterBar, {
   type: 'bar',
   data: {
-    labels: [1,2,3,4,5,6,7],
+    labels: getWeeklyDateInfo(date),
     datasets: [{
       label: "Ounces",
       data: getWeeklyWaterTotals(date),
@@ -85,10 +85,24 @@ let waterBarChart = new Chart(waterBar, {
 let sleepBarChart = new Chart(sleepBar, {
   type: 'bar',
   data: {
-    labels: [1,2,3,4,5,6,7],
+    labels: getWeeklyDateInfo(date),
     datasets: [{
+      label: "Quality",
+      type: "bar",
+      data: getWeeklySleepQual(date),
+      backgroundColor: [
+        "#f3bf89",
+        "#f3bf89",
+        "#f3bf89",
+        "#f3bf89",
+        "#f3bf89",
+        "#f3bf89",
+        "#f3bf89"
+      ]
+    },
+    {
       label: "Hours",
-      data: getWeeklySleepTotals(date),
+      data: getWeeklySleepHours(date),
       backgroundColor: [
         "#f37981",
         "#f37981",
@@ -105,6 +119,7 @@ let sleepBarChart = new Chart(sleepBar, {
       display: true,
       text: "Sleep This Week"
     },
+    barValueSpacing:0,
     scales: {
           xAxes: [{
               ticks: {
@@ -166,18 +181,26 @@ function showDailyWaterTotal() {
 
 function getWeeklyWaterTotals(date) {
   let weeklyTotals = currentHydrationData.getDailyOverWeek(date);
-  console.log(weeklyTotals);
   return weeklyTotals.map(day => day.numOunces);
  }
 
  function showDailySleepData() {
-   let hoursSlept = currentSleepData;
-   let sleepQual = currentSleepData;
-   sleepLabel.innerHTML = `${}`
+   let hoursSlept = currentSleepData.getSleepTotal(date);
+   let sleepQual = currentSleepData.getSleepQuality(date);
+   sleepLabel.innerHTML = `${hoursSlept} hours<br>${sleepQual}/5 stars`
  }
 
- function getWeeklyWaterTotals(date) {
-   let weeklyTotals = currentHydrationData.getDailyOverWeek(date);
-   console.log(weeklyTotals);
-   return weeklyTotals.map(day => day.numOunces);
+ function getWeeklySleepHours(date) {
+   let weeklyTotals = currentSleepData.getWeeklyDataForUser(date);
+   return weeklyTotals.map(day => day.hoursSlept);
   }
+
+  function getWeeklySleepQual(date) {
+    let weeklyTotals = currentSleepData.getWeeklyDataForUser(date);
+    return weeklyTotals.map(day => day.sleepQuality);
+   }
+
+   function getWeeklyDateInfo(date) {
+     let weeklyTotals = currentSleepData.getWeeklyDataForUser(date);
+     return weeklyTotals.map(day => day.date);
+    }
