@@ -1,12 +1,12 @@
-const UserRepository = require("../src/user-repo");
-const User = require("../src/users");
-var dayjs = require('dayjs');
-dayjs().format();
+// const UserRepository = require("../src/user-repo");
+// const User = require("../src/users");
+// var dayjs = require('dayjs');
+// dayjs().format();
 
 class Sleep {
   constructor(userID, dataFile) {
     this.allUserSleep = dataFile.reverse();
-    this.userSleep = this.allUserSleep.filter(datapoint => datapoint.userID === userID); 
+    this.userSleep = this.allUserSleep.filter(datapoint => datapoint.userID === userID);
   }
 
   calculateAvgHours() {
@@ -54,7 +54,7 @@ class Sleep {
     return Math.round((this.allUserSleep.reduce((acc, datapoint) => acc + datapoint.hoursSlept, 0)) / this.allUserSleep.length);
 }
 
-  filterSleepQuality(date, userRepo) { 
+  filterSleepQuality(date, userRepo) {
     const weeklyData = this.getWeeklyDataForAll(date);
     const highQualityUsers = [];
     userRepo.users.forEach(user => {
