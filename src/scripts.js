@@ -1,5 +1,7 @@
 // const Hydration = require("./hydration");
 
+// const { weekdays } = require("dayjs/locale/*");
+
 let allUsers = new UserRepository(userData); 
 let currentUser = allUsers.users[0]; 
 let date = `2019/09/22`;
@@ -10,6 +12,7 @@ Chart.defaults.global.defaultFontFamily = "Permanent Marker";
 Chart.defaults.global.defaultFontSize = 10;
 Chart.defaults.global.title.fontSize = 12;
 Chart.defaults.global.legend = false;
+Chart.defaults.global.defaultColor = "#f37981";
 
 //QUERY SELECTOR VARIABLES
 let userName = document.querySelector("#greeting");
@@ -18,7 +21,7 @@ let waterLabel = document.querySelector("#waterLabel");
 
 //CHART QUERY SELECTORS
 let userBar = document.querySelector("#userBar").getContext('2d');
-let waterBar = document.querySelector("#userBar").getContext('2d');
+let waterBar = document.querySelector("#waterBar").getContext('2d');
 
 //CHARTS
 let userActivityBarChart = new Chart(userBar, {
@@ -40,6 +43,32 @@ let userActivityBarChart = new Chart(userBar, {
     title: {
       display: true,
       text: "Daily Steps"
+    }
+  }
+});
+
+let waterBarChart = new Chart(waterBar, {
+  type: 'bar',
+  data: {
+    labels: [1,2,3,4,5,6,7],
+    datasets: [{
+      label: "Ounces",
+      data: getWeeklyWaterTotals(date),
+      backgroundColor: [
+        "#f37981",
+        "#f37981",
+        "#f37981",
+        "#f37981",
+        "#f37981",
+        "#f37981",
+        "#f37981"
+      ]
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Water This Week"
     }
   }
 });
@@ -92,3 +121,39 @@ function showDailyWaterTotal() {
   waterLabel.innerHTML = `${waterTotal} oz.`
 }
 
+function getWeeklyWaterTotals(date) {
+  let weeklyTotals = currentHydrationData.getDailyOverWeek(date);
+  console.log(weeklyTotals);
+  return weeklyTotals.map(day => day.numOunces); 
+ }
+
+ function getDaysOfWeek(date) {
+   const week = currentHydrationData.getDailyOverWeek(date);
+   const weekDays = [];
+  return week.forEach(day =>  {
+   switch (day.day) {
+     case 0:
+       weekDays.push("Sunday");
+       break;
+     case 1:
+       weekDays.push("Monday");
+        break;
+     case 2:
+       weekDays.push("Tuesday");
+        break;
+     case 3:
+       weekDays.push("Wednesday");
+       break;
+     case 4:
+       weekDays.push("Thursday");
+       break; 
+       case 5:
+       weekDays.push("Friday");
+       break; 
+       case 6:
+       weekDays.push("Saturday");
+       break; 
+    }
+   })
+  }
+ 

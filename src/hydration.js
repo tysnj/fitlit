@@ -19,7 +19,7 @@ class Hydration {
     return entry.numOunces;
   };
 
-  getDailyOverWeek(date = this.userHydration[0].date) {
+  getDailyOverWeek(date) {
     const selectedDay = dayjs(date, "YYYY/MM/DD");
     let weekStart = selectedDay.subtract(6, "day").format("YYYY/MM/DD");
     return this.userHydration.reduce((weeklyStats, record) => {
