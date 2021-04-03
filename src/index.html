@@ -18,48 +18,70 @@
       <h2 class="stats">Today's Stats</h2>
       <main class="main">
         <section class="daily-stats">
-          <span class="steps">
-            <img class="steps-icon" src="../assets/running.png">
-            <label class="steps-label">Steps</label>
-          </span>
-          <span class="water">
-            <img class="water-icon" src="../assets/water-glass.png">
-            <label id="waterLabel" class="water-label">Oz.</label>
-          </span>
-          <span class="sleep">
-            <img class="sleep-icon" src="../assets/bed--v2.png">
-            <label id="sleepLabel" class="sleep-label">Hours</label>
-          </span>
+          <div class="row">
+            <span class="daily-icon">
+             <img class="icon" src="../assets/running.png">
+              <label id="stepsLabel" class="icon-label">Steps</label>
+            </span>
+            <span class="daily-icon">
+              <img class="icon" src="../assets/clock--v2.png">
+              <label id="minutesLabel" class="icon-label">Min</label>
+            </span>
+            <span class="daily-icon">
+              <img class="icon" src="../assets/finish-flag.png">
+              <label id="milesLabel" class="icon-label">Miles</label>
+            </span>
+          </div>
+          <div class="row">
+            <span class="daily-icon">
+              <img class="icon" src="../assets/water-glass.png">
+              <label id="waterLabel" class="icon-label">Oz.</label>
+            </span>
+            <span class="daily-icon">
+              <img class="icon" src="../assets/alarm-clock--v2.png">
+              <label id="sleepHoursLabel" class="icon-label">Hours</label>
+            </span>
+            <span class="daily-icon">
+              <img class="icon" src="../assets/bed--v2.png">
+              <label id="sleepQualityLabel" class="icon-label">Stars</label>
+            </span>
+          </div>
         </section>
         <section class="weekly-activity">
           <div class="weekly-header">
-            <h3 class="weekly-chart-title">Weekly Achievements</h3>
+            <h3 class="weekly-chart-title">Achievements</h3>
           </div>
-          <canvas class="weekly-line"></canvas>
-          <canvas id="userBar" class="weekly-bar">
-            <label class="user-bar">Your Totals</label>
+          <div>
+            <canvas id="userBar" class="weekly-bar">
           </canvas>
-          <canvas class="weekly-bar">
-            <label class="all-bar">All Users' Totals</label>
-          </canvas>
+          </div>
+          <div class="comparison-bar">
+            <canvas id="minuteComparisonBar" class="daily-bar">
+            </canvas>
+            <canvas id="stairsComparisonBar" class="daily-bar">
+            </canvas>
+          </div>
+          <div>
+            <canvas id="weeklySteps" class="weekly-line"></canvas>
+            <canvas id="weeklyMinutes" class="weekly-line"></canvas>
+            <canvas id="weeklyStairs" class="weekly-line"></canvas>
+          </div>
         </section>
         <section class="weekly-water-sleep">
           <span class="water-intake">
             <canvas id="waterBar" class="vert-bar"></canvas>
-            <!-- <label class="water-chart"></label> -->
           </span>
           <span class="sleep-data">
             <canvas id="sleepBar" class="vert-bar"></canvas>
-            <!-- <label class="sleep-chart">Sleep this Week</label> -->
           </span>
         </section>
         <section class="averages-section">
           <span class="average-sleep-hours">
-            <p class="avg-number">0</p>
+            <p id="avgSleepHours" class="avg-number">0</p>
             <p>All-Time Average Hours</p>
           </span>
           <span class="average-sleep-quality">
-            <p class="avg-number">100</p>
+            <p id="avgSleepQuality" class="avg-number">100</p>
             <p>All-Time Average Quality</p>
         </section>
           </span>
@@ -89,6 +111,7 @@
     <script type="text/javascript" src="./user-repo.js"></script>
     <script type="text/javascript" src="./hydration.js"></script>
     <script type="text/javascript" src="./sleep.js"></script>
+    <script type="text/javascript" src="./activity.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script type="text/javascript" src="./scripts.js"></script>
   </body>
