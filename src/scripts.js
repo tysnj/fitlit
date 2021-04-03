@@ -19,6 +19,8 @@ let userSection = document.querySelector("#userInfoSection");
 let waterLabel = document.querySelector("#waterLabel");
 let sleepLabel = document.querySelector("#sleepLabel");
 let stepsLabel = document.querySelector("#stepsLabel");
+let calendar = document.querySelector("#calendar");
+let datePicker = document.querySelector("datePicker");
 
 //CHART QUERY SELECTORS
 let userBar = document.querySelector("#userBar").getContext('2d');
@@ -28,6 +30,25 @@ let weeklyActivity = document.querySelector("#weeklyActivity").getContext('2d');
 let activityBar1 = document.querySelector("#activityBar1").getContext('2d');
 let activityBar2 = document.querySelector("#activityBar2").getContext('2d');
 let activityBar3 = document.querySelector("#activityBar3").getContext('2d');
+
+// CALENDAR
+const dateSplitter = date => {
+  let splitDate = date.split("/");
+  let joinDate = splitDate.join(",");
+  return joinDate;
+};
+
+const findMinDate = () => {
+  let reReversedData = currentSleepData.userSleep.reverse();
+  return dateSplitter(reReversedData.userSleep[0].date)
+};
+
+const picker = datepicker(calendar, {
+  dateSelected: new Date(dateSplitter(date)),
+  maxDate: new Date(dateSplitter(date)),
+  minDate: new Date(findMinDate()),
+  position: "c"
+});
 
 //CHARTS
 let weeklyActivityChart = new Chart(weeklyActivity, {
