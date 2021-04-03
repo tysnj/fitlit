@@ -54,8 +54,8 @@ describe("Activity", function() {
   });
 
   it("should find the minutes active on a given day", function() {
-    expect(activity1.getTimeActiveByDay("2019/06/15")).to.equal(140);
-    expect(activity1.getTimeActiveByDay("2019/06/16")).to.equal(175);
+    expect(activity1.getActivityByDay("2019/06/15", "minutesActive")).to.equal(140);
+    expect(activity1.getActivityByDay("2019/06/16", "minutesActive")).to.equal(175);
   });
 
   it("should calculate the minutes active averaged for a given week", function() {

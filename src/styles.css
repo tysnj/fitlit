@@ -141,14 +141,15 @@
   }
 
   .comparison-bar {
-    /* width: 98%; */
+    width: 40%;
+    height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
 
   .daily-bar {
-    width: 30%;
+    width: 40%;
   }
 
   .user-bar,

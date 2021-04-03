@@ -24,13 +24,37 @@ let stepsLabel = document.querySelector("#stepsLabel");
 let userBar = document.querySelector("#userBar").getContext('2d');
 let waterBar = document.querySelector("#waterBar").getContext('2d');
 let sleepBar = document.querySelector("#sleepBar").getContext('2d');
-let weeklyActivity = document.querySelector("#weeklyActivity").getContext('2d');
-let activityBar1 = document.querySelector("#activityBar1").getContext('2d');
-let activityBar2 = document.querySelector("#activityBar2").getContext('2d');
-let activityBar3 = document.querySelector("#activityBar3").getContext('2d');
+let weeklySteps = document.querySelector("#weeklySteps").getContext('2d');
+let weeklyMinutes = document.querySelector("#weeklyMinutes").getContext('2d');
+let weeklyStairs = document.querySelector("#weeklyStairs").getContext('2d');
+let minuteComparisonBar = document.querySelector("#minuteComparisonBar").getContext('2d');
+let stairsComparisonBar = document.querySelector("#stairsComparisonBar").getContext('2d');
 
 //CHARTS
-let weeklyActivityChart = new Chart(weeklyActivity, {
+let userActivityBarChart = new Chart(userBar, {
+  type: 'horizontalBar',
+  data: {
+    labels: ["Your Goal", "Your Steps", "Avg Goal", "Avg Steps"],
+    datasets: [{
+      label: "Steps",
+      data: [currentUser.dailyStepGoal, getDailySteps(), calculateStepGoal(), currentActivityData.findAvgDataForAllByDay(date, "numSteps")],
+      backgroundColor: [
+        "#f37981",
+        "#f3bf89",
+        "#f37981",
+        "#f3bf89"
+      ]
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Daily Steps"
+    }
+  }
+});
+
+let weeklyStepsChart = new Chart(weeklySteps, {
   type: "line",
   data: {
     labels: getWeeklyDateInfo(date),
@@ -39,21 +63,12 @@ let weeklyActivityChart = new Chart(weeklyActivity, {
       type: "line",
       data: getUserStepsOverWeek(),
       borderColor: "#f3bf89"
-    },
-    {
-      label: "Minutes",
-      data: getUserMinutesOverWeek(),
-      borderColor: "#f37981"
-    },
-    {
-      label: "Flights of Stairs",
-      data: getUserStairsOverWeek(),
-      borderColor: "#81f379"
-    }]},
+    }
+    ]},
     options: {
       title: {
         display: true,
-        text: "Activity This Week"
+        text: "Steps This Week"
       },
       // legend: {
       //   display: true,
@@ -78,29 +93,86 @@ let weeklyActivityChart = new Chart(weeklyActivity, {
     }
 
   });
-
-let userActivityBarChart = new Chart(userBar, {
-  type: 'horizontalBar',
+let weeklyMinutesChart = new Chart(weeklyMinutes, {
+  type: "line",
   data: {
-    labels: ["Your Goal", "Your Steps", "Avg Goal", "Avg Steps"],
-    datasets: [{
-      label: "Steps",
-      data: [currentUser.dailyStepGoal, 7000, calculateStepGoal(), 5500],
-      backgroundColor: [
-        "#f37981",
-        "#f3bf89",
-        "#f37981",
-        "#f3bf89"
-      ]
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Daily Steps"
+    labels: getWeeklyDateInfo(date),
+    datasets: [
+    {
+      label: "Minutes",
+      type: "line",
+      data: getUserMinutesOverWeek(),
+      borderColor: "#f37981"
     }
-  }
-});
+    ]},
+    options: {
+      title: {
+        display: true,
+        text: "Minutes This Week"
+      },
+        // legend: {
+        //   display: true,
+        //   position: "bottom",
+        //   align: "center",
+        //   title: {
+        //     text: "Test",
+        //     color: "rgb(255, 99, 132)"
+        //
+        //   },
+        //   labels: {
+        //   }
+        // },
+       barValueSpacing:0,
+        scales: {
+        xAxes: [{
+          ticks: {
+            display: false //this will remove only the label
+          }
+        }]
+      }
+    }
+  
+  });
+
+let weeklyStairsChart = new Chart(weeklyStairs, {
+  type: "line",
+  data: {
+    labels: getWeeklyDateInfo(date),
+    datasets: [
+    {
+      label: "Flights of Stairs",
+      type: "line",
+      data: getUserStairsOverWeek(),
+      borderColor: "#81f379"
+    }]},
+    options: {
+      title: {
+        display: true,
+        text: "Stairs This Week"
+          },
+          // legend: {
+          //   display: true,
+          //   position: "bottom",
+          //   align: "center",
+          //   title: {
+          //     text: "Test",
+          //     color: "rgb(255, 99, 132)"
+          //
+          //   },
+          //   labels: {
+          //   }
+          // },
+      barValueSpacing:0,
+      scales: {
+         xAxes: [{
+          ticks: {
+            display: false //this will remove only the label
+          }
+        }]
+      }
+    } 
+  });
+
 
 let waterBarChart = new Chart(waterBar, {
   type: 'bar',
@@ -226,6 +298,91 @@ let sleepBarChart = new Chart(sleepBar, {
 //   }
 // });
 
+let minuteComparisonChart = new Chart(minuteComparisonBar, {
+  type: 'bar',
+  data: {
+    labels: ["Your Minutes of Activity", "Average Minutes for All Users"],
+    datasets: [{
+      label: "Minutes",
+      data: [currentActivityData.getActivityByDay(date, "minutesActive")],
+      backgroundColor: [
+        "#f37981"
+      ],
+      stack: "minutes"
+    },
+    {
+      label: "Avg Minutes",
+      data: [currentActivityData.findAvgDataForAllByDay(date, "minutesActive")],
+      backgroundColor: [
+        "#f3bf89"
+      ],
+      stack: "minutes"
+    }
+  ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Today's Minutes of Activity vs. Average"
+    },
+    scales: {
+      x: {
+          stacked: true
+      },
+      xAxes: [{
+        ticks: {
+            display: false //this will remove only the label
+        }
+    }],
+      y: {
+          stacked: true
+      }
+  }
+  }
+});
+
+let stairComparisonChart = new Chart(stairsComparisonBar, {
+  type: 'bar',
+  data: {
+    labels: ["Your Flights of Stairs", "Average Flights for All Users"],
+    datasets: [{
+      label: "Stairs",
+      data: [currentActivityData.getActivityByDay(date, "flightsOfStairs")],
+      backgroundColor: [
+        "#f37981"
+      ],
+      stack: "stairs"
+    },
+    {
+      label: "Avg Stairs",
+      data: [currentActivityData.findAvgDataForAllByDay(date, "flightsOfStairs")],
+      backgroundColor: [
+        "#f3bf89"
+      ],
+      stack: "stairs"
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Today's Stairs vs. Average"
+    },
+    scales: {
+      x: {
+          stacked: true
+      },
+      xAxes: [{
+        ticks: {
+            display: false //this will remove only the label
+        }
+    }],
+      y: {
+          stacked: true
+      }
+  }
+  }
+});
+
 
 //EVENT LISTENERS
 window.addEventListener("load", displayUserData);
@@ -303,14 +460,17 @@ function getWeeklyWaterTotals(date) {
      return weeklyTotals.map(day => day.date);
     }
 
+  function getDailySteps() {
+    return (currentActivityData.userActivity.find(day => day.date === date).numSteps);
+  }
+
   function displayStepsToday(date) {
-      let dailySteps = currentActivityData.userActivity.find(day => day.date === date);
-      stepsLabel.innerHTML = `${dailySteps.numSteps} Steps`;
+    stepsLabel.innerHTML = `${getDailySteps(date)} Steps`;
   }
 
   function getUserStepsOverWeek() {
     let weeklyStats = currentActivityData.getWeeklyDataForUser(date);
-    return weeklyStats.map(day => day.numSteps/100);
+    return weeklyStats.map(day => day.numSteps);
   }
 
   function getUserMinutesOverWeek() {
