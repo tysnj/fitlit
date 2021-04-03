@@ -25,8 +25,60 @@ let userBar = document.querySelector("#userBar").getContext('2d');
 let waterBar = document.querySelector("#waterBar").getContext('2d');
 let sleepBar = document.querySelector("#sleepBar").getContext('2d');
 let weeklyActivity = document.querySelector("#weeklyActivity").getContext('2d');
+let activityBar1 = document.querySelector("#activityBar1").getContext('2d');
+let activityBar2 = document.querySelector("#activityBar2").getContext('2d');
+let activityBar3 = document.querySelector("#activityBar3").getContext('2d');
 
 //CHARTS
+let weeklyActivityChart = new Chart(weeklyActivity, {
+  type: "line",
+  data: {
+    labels: getWeeklyDateInfo(date),
+    datasets: [{
+      label: "Steps",
+      type: "line",
+      data: getUserStepsOverWeek(),
+      borderColor: "#f3bf89"
+    },
+    {
+      label: "Minutes",
+      data: getUserMinutesOverWeek(),
+      borderColor: "#f37981"
+    },
+    {
+      label: "Flights of Stairs",
+      data: getUserStairsOverWeek(),
+      borderColor: "#81f379"
+    }]},
+    options: {
+      title: {
+        display: true,
+        text: "Activity This Week"
+      },
+      // legend: {
+      //   display: true,
+      //   position: "bottom",
+      //   align: "center",
+      //   title: {
+      //     text: "Test",
+      //     color: "rgb(255, 99, 132)"
+      //
+      //   },
+      //   labels: {
+      //   }
+      // },
+      barValueSpacing:0,
+      scales: {
+        xAxes: [{
+          ticks: {
+            display: false //this will remove only the label
+          }
+        }]
+      }
+    }
+
+  });
+
 let userActivityBarChart = new Chart(userBar, {
   type: 'horizontalBar',
   data: {
@@ -131,42 +183,49 @@ let sleepBarChart = new Chart(sleepBar, {
   }
 });
 
-let weeklyActivityChart = new Chart(weeklyActivity, {
-  type: "line",
-  data: {
-    labels: getWeeklyDateInfo(date),
-    datasets: [{
-      label: "Steps",
-      type: "line",
-      data: getUserStepsOverWeek(),
-      borderColor: "#f3bf89"
-    },
-    {
-      label: "Minutes",
-      data: getUserMinutesOverWeek(),
-    
-    },
-  {
-      label: "Minutes",
-      data: getUserStairsOverWeek(),
-    }]},
-  
-  options: {
-    title: {
-      display: true,
-      text: "Activity This Week"
-    },
-    barValueSpacing:0,
-    scales: {
-          xAxes: [{
-              ticks: {
-                  display: false //this will remove only the label
-              }
-          }]
-      }
-  }
+// let activityBarChart = new Chart(activityBar, {
+//   type: 'bar',
+//   data: {
+//     labels: date,
+//     datasets: [{
+//       label: "Number of Steps",
+//       type: "bar",
+//       data: [console.log(currentActivityData.findAvgDataForAllByDay(date, "numSteps"))],
+//       backgroundColor: [
+//         "#f3bf89"
+//       ]
+//     },
+//     {
+//       label: "Minutes Active",
+//       data: [console.log(currentActivityData.findAvgDataForAllByDay(date, "minutesActive"))],
+//       backgroundColor: [
+//         "#f37981"
+//       ]
+//     },
+//     {
+//       label: "Flights of Stairs Climbed",
+//       data: [console.log(currentActivityData.findAvgDataForAllByDay(date, "flightsOfStairs"))],
+//       backgroundColor: [
+//         "#81f379"
+//       ]
+//     }]
+//   },
+//   options: {
+//     title: {
+//       display: true,
+//       text: "Everyone Today"
+//     },
+//     barValueSpacing:0,
+//     scales: {
+//           xAxes: [{
+//               ticks: {
+//                   display: false //this will remove only the label
+//               }
+//           }]
+//       }
+//   }
+// });
 
-});
 
 //EVENT LISTENERS
 window.addEventListener("load", displayUserData);
@@ -253,7 +312,7 @@ function getWeeklyWaterTotals(date) {
     let weeklyStats = currentActivityData.getWeeklyDataForUser(date);
     return weeklyStats.map(day => day.numSteps/100);
   }
-  
+
   function getUserMinutesOverWeek() {
     let weeklyStats = currentActivityData.getWeeklyDataForUser(date);
     return weeklyStats.map(day => day.minutesActive);
@@ -263,7 +322,3 @@ function getWeeklyWaterTotals(date) {
     let weeklyStats = currentActivityData.getWeeklyDataForUser(date);
     return weeklyStats.map(day => day.flightsOfStairs);
   }
-
-
-
-  

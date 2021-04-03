@@ -35,13 +35,25 @@
           <div class="weekly-header">
             <h3 class="weekly-chart-title">Weekly Achievements</h3>
           </div>
-          <canvas id="weeklyActivity" class="weekly-line"></canvas>
-          <canvas id="userBar" class="weekly-bar">
-            <label class="user-bar">Your Totals</label>
+          <div>
+            <canvas id="userBar" class="weekly-bar">
+            <!-- <label class="user-bar">Your Totals</label> -->
           </canvas>
-          <canvas class="weekly-bar">
-            <label class="all-bar">All Users' Totals</label>
-          </canvas>
+          </div>
+          <div class="comparison-bar">
+            <canvas id="activityBar1" class="daily-bar">
+            <!-- <label class="all-bar">All Users' Totals</label> -->
+            </canvas>
+            <canvas id="activityBar2" class="daily-bar">
+            <!-- <label class="all-bar">All Users' Totals</label> -->
+            </canvas>
+            <canvas id="activityBar3" class="daily-bar">
+            <!-- <label class="all-bar">All Users' Totals</label> -->
+            </canvas>
+          </div>
+          <div>
+            <canvas id="weeklyActivity" class="weekly-line"></canvas>
+          </div>
         </section>
         <section class="weekly-water-sleep">
           <span class="water-intake">
