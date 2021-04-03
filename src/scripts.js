@@ -21,6 +21,10 @@ let waterLabel = document.querySelector("#waterLabel");
 let sleepHoursLabel = document.querySelector("#sleepHoursLabel");
 let sleepQualityLabel = document.querySelector("#sleepQualityLabel");
 let stepsLabel = document.querySelector("#stepsLabel");
+let minutesLabel = document.querySelector("#minutesLabel");
+let milesLabel = document.querySelector("#milesLabel");
+let avgSleepHours = document.querySelector("#avgSleepHours");
+let avgSleepQuality = document.querySelector("#avgSleepQuality");
 
 //CHART QUERY SELECTORS
 let userBar = document.querySelector("#userBar").getContext('2d');
@@ -59,7 +63,20 @@ const picker = datepicker(calendar, {
 });
 
 //CHARTS
-let userActivityBarChart = new Chart(userBar, {
+// const chartUpdate = () => {
+//   userActivityBarChart.update(userActivityBarChart.data.datasets[0].data = [currentUser.dailyStepGoal, currentActivityData.getActivityByDay(date, "numSteps"), calculateStepGoal(), currentActivityData.findAvgDataForAllByDay(date, "numSteps")]);
+//   weeklyStepsChart.update();
+//   weeklyMinutesChart.update();
+//   weeklyStairsChart.update();
+//   waterBarChart.update();
+//   sleepBarChart.update();
+//   minuteComparisonChart.update();
+//   stairComparisonChart.update();
+// };
+
+
+const chartDisplay = () => {
+  let userActivityBarChart = new Chart(userBar, {
   type: 'horizontalBar',
   data: {
     labels: ["Your Goal", "Your Steps", "Avg Goal", "Avg Steps"],
@@ -286,9 +303,9 @@ let sleepBarChart = new Chart(sleepBar, {
 let minuteComparisonChart = new Chart(minuteComparisonBar, {
   type: 'bar',
   data: {
-    labels: ["Your Minutes of Activity", "Average Minutes for All Users"],
+    labels: ["Number of Minutes"],
     datasets: [{
-      label: "Minutes",
+      label: "Your Stats",
       data: [currentActivityData.getActivityByDay(date, "minutesActive")],
       backgroundColor: [
         "#f37981"
@@ -296,7 +313,7 @@ let minuteComparisonChart = new Chart(minuteComparisonBar, {
       stack: "minutes"
     },
     {
-      label: "Avg Minutes",
+      label: "Average",
       data: [currentActivityData.findAvgDataForAllByDay(date, "minutesActive")],
       backgroundColor: [
         "#f3bf89"
@@ -308,7 +325,7 @@ let minuteComparisonChart = new Chart(minuteComparisonBar, {
   options: {
     title: {
       display: true,
-      text: "Today's Minutes of Activity vs. Average"
+      text: "Time Active"
     },
     scales: {
       x: {
@@ -329,9 +346,9 @@ let minuteComparisonChart = new Chart(minuteComparisonBar, {
 let stairComparisonChart = new Chart(stairsComparisonBar, {
   type: 'bar',
   data: {
-    labels: ["Your Flights of Stairs", "Average Flights for All Users"],
+    labels: ["Flights of Stairs"],
     datasets: [{
-      label: "Stairs",
+      label: "Your Stats",
       data: [currentActivityData.getActivityByDay(date, "flightsOfStairs")],
       backgroundColor: [
         "#f37981"
@@ -339,7 +356,7 @@ let stairComparisonChart = new Chart(stairsComparisonBar, {
       stack: "stairs"
     },
     {
-      label: "Avg Stairs",
+      label: "Average",
       data: [currentActivityData.findAvgDataForAllByDay(date, "flightsOfStairs")],
       backgroundColor: [
         "#f3bf89"
@@ -350,7 +367,7 @@ let stairComparisonChart = new Chart(stairsComparisonBar, {
   options: {
     title: {
       display: true,
-      text: "Today's Stairs vs. Average"
+      text: "Stairs Climbed"
     },
     scales: {
       x: {
@@ -367,6 +384,7 @@ let stairComparisonChart = new Chart(stairsComparisonBar, {
   }
   }
 });
+};
 
 //FUNCTIONS
 
@@ -386,6 +404,7 @@ function displayUserData() {
   calculateStepGoal();
   displayAvgSleepHoursAllTime();
   displayAvgSleepQualityAllTime();
+  chartDisplay();
 }
 
 function updateDailyBadges() {
