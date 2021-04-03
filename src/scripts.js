@@ -39,8 +39,44 @@ let stairsComparisonBar = document.querySelector("#stairsComparisonBar").getCont
 //EVENT LISTENERS
 window.addEventListener("load", displayUserData);
 
+// CALENDAR
+const dateSplitter = date => {
+  let splitDate = date.split("/");
+  let joinDate = splitDate.join(",");
+  return joinDate;
+};
+
+const findMinDate = data => {
+  let reReversedData = data.userSleep.reverse();
+  return dateSplitter(reReversedData[0].date)
+};
+
+const picker = datepicker(calendar, {
+  dateSelected: new Date(dateSplitter(date)),
+  maxDate: new Date(dateSplitter(date)),
+  minDate: new Date(findMinDate(currentSleepData)),
+  position: "c",
+  onSelect: (instance, newDate) => {
+    updateDate(newDate);
+    displayUserData();
+  }
+});
+
 //CHARTS
-let userActivityBarChart = new Chart(userBar, {
+// const chartUpdate = () => {
+//   userActivityBarChart.update(userActivityBarChart.data.datasets[0].data = [currentUser.dailyStepGoal, currentActivityData.getActivityByDay(date, "numSteps"), calculateStepGoal(), currentActivityData.findAvgDataForAllByDay(date, "numSteps")]);
+//   weeklyStepsChart.update();
+//   weeklyMinutesChart.update();
+//   weeklyStairsChart.update();
+//   waterBarChart.update();
+//   sleepBarChart.update();
+//   minuteComparisonChart.update();
+//   stairComparisonChart.update();
+// };
+
+
+const chartDisplay = () => {
+  let userActivityBarChart = new Chart(userBar, {
   type: 'horizontalBar',
   data: {
     labels: ["Your Goal", "Your Steps", "Avg Goal", "Avg Steps"],
@@ -95,7 +131,7 @@ let weeklyStepsChart = new Chart(weeklySteps, {
       scales: {
         xAxes: [{
           ticks: {
-            display: false 
+            display: false
           }
         }]
       }
@@ -135,12 +171,12 @@ let weeklyMinutesChart = new Chart(weeklyMinutes, {
         scales: {
         xAxes: [{
           ticks: {
-            display: false 
+            display: false
           }
         }]
       }
     }
-  
+
   });
 
 let weeklyStairsChart = new Chart(weeklyStairs, {
@@ -179,7 +215,7 @@ let weeklyStairsChart = new Chart(weeklyStairs, {
           }
         }]
       }
-    } 
+    }
   });
 
 
@@ -267,9 +303,9 @@ let sleepBarChart = new Chart(sleepBar, {
 let minuteComparisonChart = new Chart(minuteComparisonBar, {
   type: 'bar',
   data: {
-    labels: ["Your Minutes of Activity", "Average Minutes for All Users"],
+    labels: ["Number of Minutes"],
     datasets: [{
-      label: "Minutes",
+      label: "Your Stats",
       data: [currentActivityData.getActivityByDay(date, "minutesActive")],
       backgroundColor: [
         "#f37981"
@@ -277,7 +313,7 @@ let minuteComparisonChart = new Chart(minuteComparisonBar, {
       stack: "minutes"
     },
     {
-      label: "Avg Minutes",
+      label: "Average",
       data: [currentActivityData.findAvgDataForAllByDay(date, "minutesActive")],
       backgroundColor: [
         "#f3bf89"
@@ -289,7 +325,7 @@ let minuteComparisonChart = new Chart(minuteComparisonBar, {
   options: {
     title: {
       display: true,
-      text: "Today's Minutes of Activity vs. Average"
+      text: "Time Active"
     },
     scales: {
       x: {
@@ -310,9 +346,9 @@ let minuteComparisonChart = new Chart(minuteComparisonBar, {
 let stairComparisonChart = new Chart(stairsComparisonBar, {
   type: 'bar',
   data: {
-    labels: ["Your Flights of Stairs", "Average Flights for All Users"],
+    labels: ["Flights of Stairs"],
     datasets: [{
-      label: "Stairs",
+      label: "Your Stats",
       data: [currentActivityData.getActivityByDay(date, "flightsOfStairs")],
       backgroundColor: [
         "#f37981"
@@ -320,7 +356,7 @@ let stairComparisonChart = new Chart(stairsComparisonBar, {
       stack: "stairs"
     },
     {
-      label: "Avg Stairs",
+      label: "Average",
       data: [currentActivityData.findAvgDataForAllByDay(date, "flightsOfStairs")],
       backgroundColor: [
         "#f3bf89"
@@ -331,7 +367,7 @@ let stairComparisonChart = new Chart(stairsComparisonBar, {
   options: {
     title: {
       display: true,
-      text: "Today's Stairs vs. Average"
+      text: "Stairs Climbed"
     },
     scales: {
       x: {
@@ -348,6 +384,7 @@ let stairComparisonChart = new Chart(stairsComparisonBar, {
   }
   }
 });
+};
 
 //FUNCTIONS
 
@@ -355,17 +392,19 @@ function switchUser(userID) {
     currentUser = allUsers.users.find(user => user.id === userID);
 }
 
-// function updateDate() {
-//   date = NEW DATE INPUT
-// }
+function updateDate(newDate) {
+  date = dayjs(newDate).format("YYYY/MM/DD");
+}
 
 function displayUserData() {
+  displayDate();
   greetUser();
   displayIDCard();
   updateDailyBadges();
   calculateStepGoal();
   displayAvgSleepHoursAllTime();
   displayAvgSleepQualityAllTime();
+  chartDisplay();
 }
 
 function updateDailyBadges() {
@@ -374,6 +413,10 @@ function updateDailyBadges() {
   displayStepsToday(date);
   displayMilesToday();
   displayMinutesToday();
+}
+
+function displayDate() {
+  dateDisplay.innerText = date;
 }
 
 function greetUser(userID = 1) {
