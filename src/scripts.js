@@ -20,7 +20,8 @@ let waterLabel = document.querySelector("#waterLabel");
 let sleepLabel = document.querySelector("#sleepLabel");
 let stepsLabel = document.querySelector("#stepsLabel");
 let calendar = document.querySelector("#calendar");
-let datePicker = document.querySelector("datePicker");
+// let datePicker = document.querySelector("#datePicker");
+let dateDisplay = document.querySelector("#dateDisplay");
 
 //CHART QUERY SELECTORS
 let userBar = document.querySelector("#userBar").getContext('2d');
@@ -38,16 +39,20 @@ const dateSplitter = date => {
   return joinDate;
 };
 
-const findMinDate = () => {
-  let reReversedData = currentSleepData.userSleep.reverse();
-  return dateSplitter(reReversedData.userSleep[0].date)
+const findMinDate = data => {
+  let reReversedData = data.userSleep.reverse();
+  return dateSplitter(reReversedData[0].date)
 };
 
 const picker = datepicker(calendar, {
   dateSelected: new Date(dateSplitter(date)),
   maxDate: new Date(dateSplitter(date)),
-  minDate: new Date(findMinDate()),
-  position: "c"
+  minDate: new Date(findMinDate(currentSleepData)),
+  position: "c",
+  onSelect: (instance, newDate) => {
+    updateDate(newDate);
+    displayUserData();
+  }
 });
 
 //CHARTS
@@ -257,17 +262,22 @@ function switchUser(userID) {
     currentUser = allUsers.users.find(user => user.id === userID);
 }
 
-// function updateDate() {
-//   date = NEW DATE INPUT
-// }
+function updateDate(newDate) {
+  date = dayjs(newDate).format("YYYY/MM/DD");
+}
 
 function displayUserData() {
+  displayDate();
   greetUser();
   displayIDCard();
   calculateStepGoal();
   showDailyWaterTotal();
   showDailySleepData();
   displayStepsToday(date);
+}
+
+function displayDate() {
+  dateDisplay.innerText = date;
 }
 
 function greetUser(userID = 1) {
