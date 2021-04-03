@@ -79,17 +79,19 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     font-family: "Permanent Marker";
   }
 
+  .row {
+    display: flex;
+    justify-content: space-around;
+  }
   .stats {
     margin-left: .2rem;
   }
 
-  .steps,
-  .water,
-  .sleep {
+  .daily-icon {
     font-size: 13px;
     display: flex;
     flex-direction: column;
@@ -100,9 +102,7 @@
     background-color: #1c5061;
   }
 
-  .steps-icon,
-  .water-icon,
-  .sleep-icon {
+  .icon {
     width: 50px;
     height: 50px;
   }
@@ -143,14 +143,15 @@
   }
 
   .comparison-bar {
-    /* width: 98%; */
+    width: 40%;
+    height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
 
   .daily-bar {
-    width: 30%;
+    width: 40%;
   }
 
   .user-bar,

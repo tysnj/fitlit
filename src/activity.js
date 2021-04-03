@@ -12,9 +12,9 @@ class Activity {
     return Math.round((entry.numSteps * strideLength) / 5280 * 100)/100;
   };
 
-  getTimeActiveByDay(date) {
+  getActivityByDay(date, activity) {
     const entry = this.userActivity.find(userEntry => userEntry.date === date);
-    return entry.minutesActive;
+    return entry[activity];
   };
 
   getWeeklyDataForUser(date) {
