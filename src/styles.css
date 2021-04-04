@@ -78,7 +78,7 @@
   .daily-stats {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     font-family: "Permanent Marker";
   }
@@ -86,20 +86,25 @@
   .row {
     display: flex;
     justify-content: space-around;
+    align-items: space-around;
+    margin-bottom: 5%;
   }
   .stats {
     margin-left: .2rem;
   }
 
   .daily-icon {
-    font-size: 13px;
+    font-size: .9em;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     border: 2px solid #1c5061;
     padding: 4px 15px 3px;
     border-radius: 20px;
     background-color: #1c5061;
+    position: relative;
+    width: 15%;
   }
 
   .icon {
@@ -129,34 +134,43 @@
 
   }
 
-  .weekly-line {
-    height: 5em;
+  .line-chart-group {
+    height: 70%;
+    width: 95%;
+    border: 2px solid red;
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* justify-content: space-around; */
+  }
+
+  .line-chart {
+    height: 10%;
+    position: relative;
     width: 98%;
     border: 2px solid #1c5061;
+    margin-bottom: 30%;
   }
 
   .weekly-bar,
   .comparison-bar {
-    height: 3em;
+    height: 100%;
     width: 98%;
     /* border: 2px solid #1c5061; */
   }
 
   .comparison-bar {
-    width: 40%;
-    height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 10%;
   }
 
   .daily-bar {
     width: 40%;
   }
 
-  .user-bar,
-  .all-bar {
-
+  .steps-bar {
+    width: 95%;
   }
 
   /* Activity Data Section  */
@@ -164,20 +178,18 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    height: 25%;
+    height: 100%;
+    margin-bottom: 10%;
   }
 
   .water-intake,
-  .sleep-data {
-    display: flex;
+  .sleep-data, .double-chart {
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-  }
-
-  .vert-bar {
-    height: 75%;
-    width: 75%;
+    text-align: center; */
+    width: 40%;
+    height: 100%;
   }
 
   .water-chart
@@ -190,6 +202,7 @@
     justify-content: center;
     width: 95%;
     height: 20%;
+    margin-bottom: 20%;
   }
   .average-sleep-hours,
   .average-sleep-quality {
@@ -210,10 +223,15 @@
     margin: 0;
   }
 
+  .spacer {
+    height: 30%;
+    position: fixed;
+  }
+
   /* User Data Section  */
   .user-info-section {
     background-color: #011F2C;
-    position: sticky;
+    position: fixed;
     bottom: 0;
     display: flex;
     align-items: space-around;
@@ -222,6 +240,8 @@
     opacity: 65%;
     color: #f3bf89;
     margin-bottom: 0;
+    height: 30%;
+    clear: both;
   }
 
   .right-side {
