@@ -64,24 +64,51 @@ const picker = datepicker(calendar, {
 
 //CHARTS
 const chartUpdate = () => {
-  const activityBarData = [currentUser.dailyStepGoal, currentActivityData.getActivityByDay(date, "numSteps"), calculateStepGoal(), currentActivityData.findAvgDataForAllByDay(date, "numSteps")]
-  const sleepBarData = [{
-      label: "Quality",
-      type: "bar",
-      data: getWeeklySleepQual(date),
+  const activityBarData = {
+    labels: ["Your Goal", "Your Steps", "Avg Goal", "Avg Steps"],
+    datasets: [{
+      label: "Steps",
+      data: [currentUser.dailyStepGoal, currentActivityData.getActivityByDay(date, "numSteps"), calculateStepGoal(), currentActivityData.findAvgDataForAllByDay(date, "numSteps")],
       backgroundColor: [
+        "#f37981",
         "#f3bf89",
-        "#f3bf89",
-        "#f3bf89",
-        "#f3bf89",
-        "#f3bf89",
-        "#f3bf89",
+        "#f37981",
         "#f3bf89"
       ]
-    },
-    {
-      label: "Hours",
-      data: getWeeklySleepHours(date),
+    }]
+  };
+  const stepLineData = {
+    labels: getWeeklyDateInfo(date),
+    datasets: [{
+      label: "Steps",
+      type: "line",
+      data: getUserStepsOverWeek(),
+      borderColor: "#f3bf89"
+    }]
+  };
+  const minLineData = {
+    labels: getWeeklyDateInfo(date),
+    datasets: [{
+      label: "Minutes",
+      type: "line",
+      data: getUserMinutesOverWeek(),
+      borderColor: "#f37981"
+    }]
+  };
+  const stairLineData = {
+    labels: getWeeklyDateInfo(date),
+    datasets: [{
+      label: "Flights of Stairs",
+      type: "line",
+      data: getUserStairsOverWeek(),
+      borderColor: "#81f379"
+    }]
+  };
+  const waterBarData = {
+    labels: getWeeklyDateInfo(date),
+    datasets: [{
+      label: "Ounces",
+      data: getWeeklyWaterTotals(date),
       backgroundColor: [
         "#f37981",
         "#f37981",
@@ -91,51 +118,88 @@ const chartUpdate = () => {
         "#f37981",
         "#f37981"
       ]
-    }
-  ];
-  const minCompData = [{
-      label: "Your Stats",
-      data: [currentActivityData.getActivityByDay(date, "minutesActive")],
-      backgroundColor: [
-        "#f37981"
-      ],
-      stack: "minutes"
-    },
-    {
-      label: "Average",
-      data: [currentActivityData.findAvgDataForAllByDay(date, "minutesActive")],
-      backgroundColor: [
-        "#f3bf89"
-      ],
-      stack: "minutes"
-    }
-  ];
-  const stairCompData = [{
-      label: "Your Stats",
-      data: [currentActivityData.getActivityByDay(date, "flightsOfStairs")],
-      backgroundColor: [
-        "#f37981"
-      ],
-      stack: "stairs"
-    },
-    {
-      label: "Average",
-      data: [currentActivityData.findAvgDataForAllByDay(date, "flightsOfStairs")],
-      backgroundColor: [
-        "#f3bf89"
-      ],
-      stack: "stairs"
-    }
-  ];
-  
-  userActivityBarChart.update(userActivityBarChart.data.datasets[0].data = activityBarData);
-  weeklyStepsChart.update(weeklyStepsChart.data.datasets[0].data = getUserStepsOverWeek());
-  weeklyMinutesChart.update(weeklyMinutesChart.data.datasets[0].data = getUserMinutesOverWeek());
-  weeklyStairsChart.update(weeklyStairsChart.data.datasets[0].data = getUserStairsOverWeek());
-  waterBarChart.update(waterBarChart.data.datasets[0].data = getWeeklyWaterTotals(date));
-  sleepBarChart.update(sleepBarChart.data.datasets = sleepBarData);
-  minuteComparisonChart.update(minuteComparisonChart.data.datasets = minCompData);
-  stairComparisonChart.update(stairComparisonChart.data.datasets = stairCompData);
+    }]
+  };
+  const sleepBarData = {
+    labels: getWeeklyDateInfo(date),
+    datasets: [{
+        label: "Quality",
+        type: "bar",
+        data: getWeeklySleepQual(date),
+        backgroundColor: [
+          "#f3bf89",
+          "#f3bf89",
+          "#f3bf89",
+          "#f3bf89",
+          "#f3bf89",
+          "#f3bf89",
+          "#f3bf89"
+        ]
+      },
+      {
+        label: "Hours",
+        data: getWeeklySleepHours(date),
+        backgroundColor: [
+          "#f37981",
+          "#f37981",
+          "#f37981",
+          "#f37981",
+          "#f37981",
+          "#f37981",
+          "#f37981"
+        ]
+      }
+    ]
+  };
+  const minCompData = {
+    labels: ["Number of Minutes"],
+    datasets: [{
+        label: "Your Stats",
+        data: [currentActivityData.getActivityByDay(date, "minutesActive")],
+        backgroundColor: [
+          "#f37981"
+        ],
+        stack: "minutes"
+      },
+      {
+        label: "Average",
+        data: [currentActivityData.findAvgDataForAllByDay(date, "minutesActive")],
+        backgroundColor: [
+          "#f3bf89"
+        ],
+        stack: "minutes"
+      }
+    ]
+  };
+  const stairCompData = {
+    labels: ["Flights of Stairs"],
+    datasets: [{
+        label: "Your Stats",
+        data: [currentActivityData.getActivityByDay(date, "flightsOfStairs")],
+        backgroundColor: [
+          "#f37981"
+        ],
+        stack: "stairs"
+      },
+      {
+        label: "Average",
+        data: [currentActivityData.findAvgDataForAllByDay(date, "flightsOfStairs")],
+        backgroundColor: [
+          "#f3bf89"
+        ],
+        stack: "stairs"
+      }
+    ]
+  };
+
+  userActivityBarChart.update(userActivityBarChart.data = activityBarData);
+  weeklyStepsChart.update(weeklyStepsChart.data = stepLineData);
+  weeklyMinutesChart.update(weeklyMinutesChart.data = minLineData);
+  weeklyStairsChart.update(weeklyStairsChart.data = stairLineData);
+  waterBarChart.update(waterBarChart.data = waterBarData);
+  sleepBarChart.update(sleepBarChart.data = sleepBarData);
+  minuteComparisonChart.update(minuteComparisonChart.data = minCompData);
+  stairComparisonChart.update(stairComparisonChart.data = stairCompData);
 };
 
 
