@@ -29,6 +29,8 @@ const activityTestData = [
   }
 ];
 
-module.exports = {
-  activityTestData
-}
+if (typeof module !== "undefined") {
+  module.exports = {
+    activityTestData
+  }
+};

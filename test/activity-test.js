@@ -1,17 +1,16 @@
-const chai = require("chai");
-const expect = chai.expect;
+// const chai = require("chai");
+// const expect = chai.expect;
 
-const userDataFile = require("../data/user-test-data");
-const users = userDataFile.userTestData;
-const UserRepository = require("../src/user-repo");
-const User = require("../src/users")
+// const userDataFile = require("../data/user-test-data");
+// const users = userDataFile.userTestData;
+// const UserRepository = require("../src/user-repo");
 
-const dataFile = require("../data/activity-test-data");
-const activityData = dataFile.activityTestData.reverse();
-const Activity = require("../src/activity");
+// const dataFile = require("../data/activity-test-data");
+// const activityData = dataFile.activityTestData.reverse();
+// const Activity = require("../src/activity");
 
 describe("Activity", function() {
-  let activity;
+  let userRepo, activity1, activity2;
 
   beforeEach(function() {
     userRepo = new UserRepository(users);

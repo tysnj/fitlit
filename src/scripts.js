@@ -63,7 +63,7 @@ const picker = datepicker(calendar, {
 });
 
 //CHARTS
-const chartUpdate = () => {
+const updateChart = () => {
   const activityBarData = {
     labels: ["Your Goal", "Your Steps", "Avg Goal", "Avg Steps"],
     datasets: [{
@@ -78,7 +78,7 @@ const chartUpdate = () => {
     }]
   };
   const stepLineData = {
-    labels: getWeeklyDateInfo(date),
+    labels: getWeeklyDateInfo(),
     datasets: [{
       label: "Steps",
       type: "line",
@@ -87,7 +87,7 @@ const chartUpdate = () => {
     }]
   };
   const minLineData = {
-    labels: getWeeklyDateInfo(date),
+    labels: getWeeklyDateInfo(),
     datasets: [{
       label: "Minutes",
       type: "line",
@@ -96,7 +96,7 @@ const chartUpdate = () => {
     }]
   };
   const stairLineData = {
-    labels: getWeeklyDateInfo(date),
+    labels: getWeeklyDateInfo(),
     datasets: [{
       label: "Flights of Stairs",
       type: "line",
@@ -105,10 +105,10 @@ const chartUpdate = () => {
     }]
   };
   const waterBarData = {
-    labels: getWeeklyDateInfo(date),
+    labels: getWeeklyDateInfo(),
     datasets: [{
       label: "Ounces",
-      data: getWeeklyWaterTotals(date),
+      data: getWeeklyWaterTotals(),
       backgroundColor: [
         "#f37981",
         "#f37981",
@@ -121,11 +121,11 @@ const chartUpdate = () => {
     }]
   };
   const sleepBarData = {
-    labels: getWeeklyDateInfo(date),
+    labels: getWeeklyDateInfo(),
     datasets: [{
         label: "Quality",
         type: "bar",
-        data: getWeeklySleepQual(date),
+        data: getWeeklySleepQual(),
         backgroundColor: [
           "#f3bf89",
           "#f3bf89",
@@ -138,7 +138,7 @@ const chartUpdate = () => {
       },
       {
         label: "Hours",
-        data: getWeeklySleepHours(date),
+        data: getWeeklySleepHours(),
         backgroundColor: [
           "#f37981",
           "#f37981",
@@ -230,7 +230,7 @@ const chartUpdate = () => {
   let weeklyStepsChart = new Chart(weeklySteps, {
     type: "line",
     data: {
-      labels: getWeeklyDateInfo(date),
+      labels: getWeeklyDateInfo(),
       datasets: [{
         label: "Steps",
         type: "line",
@@ -243,18 +243,6 @@ const chartUpdate = () => {
         display: true,
         text: "Steps This Week"
       },
-      // legend: {
-      //   display: true,
-      //   position: "bottom",
-      //   align: "center",
-      //   title: {
-      //     text: "Test",
-      //     color: "rgb(255, 99, 132)"
-      //
-      //   },
-      //   labels: {
-      //   }
-      // },
       barValueSpacing: 0,
       scales: {
         xAxes: [{
@@ -270,7 +258,7 @@ const chartUpdate = () => {
   let weeklyMinutesChart = new Chart(weeklyMinutes, {
     type: "line",
     data: {
-      labels: getWeeklyDateInfo(date),
+      labels: getWeeklyDateInfo(),
       datasets: [{
         label: "Minutes",
         type: "line",
@@ -283,18 +271,6 @@ const chartUpdate = () => {
         display: true,
         text: "Minutes This Week"
       },
-      // legend: {
-      //   display: true,
-      //   position: "bottom",
-      //   align: "center",
-      //   title: {
-      //     text: "Test",
-      //     color: "rgb(255, 99, 132)"
-      //
-      //   },
-      //   labels: {
-      //   }
-      // },
       barValueSpacing: 0,
       scales: {
         xAxes: [{
@@ -310,7 +286,7 @@ const chartUpdate = () => {
   let weeklyStairsChart = new Chart(weeklyStairs, {
     type: "line",
     data: {
-      labels: getWeeklyDateInfo(date),
+      labels: getWeeklyDateInfo(),
       datasets: [{
         label: "Flights of Stairs",
         type: "line",
@@ -323,18 +299,6 @@ const chartUpdate = () => {
         display: true,
         text: "Stairs This Week"
       },
-      // legend: {
-      //   display: true,
-      //   position: "bottom",
-      //   align: "center",
-      //   title: {
-      //     text: "Test",
-      //     color: "rgb(255, 99, 132)"
-      //
-      //   },
-      //   labels: {
-      //   }
-      // },
       barValueSpacing: 0,
       scales: {
         xAxes: [{
@@ -349,10 +313,10 @@ const chartUpdate = () => {
   let waterBarChart = new Chart(waterBar, {
     type: 'bar',
     data: {
-      labels: getWeeklyDateInfo(date),
+      labels: getWeeklyDateInfo(),
       datasets: [{
         label: "Ounces",
-        data: getWeeklyWaterTotals(date),
+        data: getWeeklyWaterTotals(),
         backgroundColor: [
           "#f37981",
           "#f37981",
@@ -382,11 +346,11 @@ const chartUpdate = () => {
   let sleepBarChart = new Chart(sleepBar, {
     type: 'bar',
     data: {
-      labels: getWeeklyDateInfo(date),
+      labels: getWeeklyDateInfo(),
       datasets: [{
           label: "Quality",
           type: "bar",
-          data: getWeeklySleepQual(date),
+          data: getWeeklySleepQual(),
           backgroundColor: [
             "#f3bf89",
             "#f3bf89",
@@ -399,7 +363,7 @@ const chartUpdate = () => {
         },
         {
           label: "Hours",
-          data: getWeeklySleepHours(date),
+          data: getWeeklySleepHours(),
           backgroundColor: [
             "#f37981",
             "#f37981",
@@ -517,11 +481,11 @@ const chartUpdate = () => {
 
 //FUNCTIONS
 
-function switchUser(userID) {
+const switchUser = (userID) => {
     currentUser = allUsers.users.find(user => user.id === userID);
 }
 
-function updateDate(newDate) {
+const updateDate = (newDate) => {
   date = dayjs(newDate).format("YYYY/MM/DD");
 }
 
@@ -533,15 +497,17 @@ function displayUserData() {
   calculateStepGoal();
   displayAvgSleepHoursAllTime();
   displayAvgSleepQualityAllTime();
-  chartUpdate();
+  updateChart();
 }
 
 function updateDailyBadges() {
   showDailyWaterTotal();
   showDailySleepData();
-  displayStepsToday(date);
+  // displayStepsToday();
   displayMilesToday();
-  displayMinutesToday();
+  // displayMinutesToday();
+  displayActivityToday(minutesLabel, "minutesActive", "min");
+  displayActivityToday(stepsLabel, "numSteps", "steps");
 }
 
 function displayDate() {
@@ -576,14 +542,12 @@ function showDailyWaterTotal() {
   waterLabel.innerHTML = `${waterTotal} Oz.`
 }
 
-function getWeeklyWaterTotals(date) {
+function getWeeklyWaterTotals() {
   let weeklyTotals = currentHydrationData.getDailyOverWeek(date);
   return weeklyTotals.map(day => day.numOunces);
  }
 
  function showDailySleepData() {
-   let hoursSlept = currentSleepData.getSleepTotal(date);
-   let sleepQual = currentSleepData.getSleepQuality(date);
    sleepHoursLabel.innerHTML = `${currentSleepData.getSleepTotal(date)} Hours`;
    sleepQualityLabel.innerHTML = `${currentSleepData.getSleepQuality(date)} Stars`;
  }
@@ -592,32 +556,33 @@ function getWeeklyWaterTotals(date) {
    milesLabel.innerHTML = `${currentActivityData.getMilesByDay(date, currentUser.strideLength)} Miles`;
  }
 
- function displayMinutesToday() {
-   minutesLabel.innerHTML = `${currentActivityData.getActivityByDay(date, "minutesActive")} Min`;
- }
+//  function displayMinutesToday() {
+//    minutesLabel.innerHTML = `${currentActivityData.getActivityByDay(date, "minutesActive")} Min`;
+//  }
 
- function getWeeklySleepHours(date) {
+//  function displayStepsToday() {
+//   stepsLabel.innerHTML = `${currentActivityData.getActivityByDay(date, "numSteps")} Steps`;
+// }
+
+ function displayActivityToday(selector, property, label ) {
+  const activityData = currentActivityData.getActivityByDay(date, property);
+  selector.innerHTML = `${activityData} ${label}`;
+}
+
+ function getWeeklySleepHours() {
    let weeklyTotals = currentSleepData.getWeeklyDataForUser(date);
    return weeklyTotals.map(day => day.hoursSlept);
   }
 
-  function getWeeklySleepQual(date) {
+  function getWeeklySleepQual() {
     let weeklyTotals = currentSleepData.getWeeklyDataForUser(date);
     return weeklyTotals.map(day => day.sleepQuality);
    }
 
-   function getWeeklyDateInfo(date) {
+   function getWeeklyDateInfo() {
      let weeklyTotals = currentSleepData.getWeeklyDataForUser(date);
      return weeklyTotals.map(day => day.date);
     }
-
-  // function getDailySteps() {
-  //   return (currentActivityData.userActivity.find(day => day.date === date).numSteps);
-  // }
-
-  function displayStepsToday(date) {
-    stepsLabel.innerHTML = `${currentActivityData.getActivityByDay(date, "numSteps")} Steps`;
-  }
 
   function getUserStepsOverWeek() {
     let weeklyStats = currentActivityData.getWeeklyDataForUser(date);

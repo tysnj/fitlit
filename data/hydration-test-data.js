@@ -21,6 +21,8 @@ const hydrationTestData = [
   }
 ];
 
-module.exports = {
-  hydrationTestData
-}
+if (typeof module !== "undefined") {
+  module.exports = {
+    hydrationTestData
+  }
+};

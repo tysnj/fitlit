@@ -1,13 +1,13 @@
-const chai = require("chai");
-const expect = chai.expect;
+// const chai = require("chai");
+// const expect = chai.expect;
 
-const dataFile = require("../data/sleep-test-data");
-const sleepData = dataFile.sleepTestData;
-const userDataFile = require("../data/user-test-data");
-const users = userDataFile.userTestData;
-const Sleep = require("../src/sleep");
-const UserRepository = require("../src/user-repo");
-const User = require("../src/users");
+// const dataFile = require("../data/sleep-test-data");
+// const sleepData = dataFile.sleepTestData;
+// const userDataFile = require("../data/user-test-data");
+// const users = userDataFile.userTestData;
+
+// const Sleep = require("../src/sleep");
+// const UserRepository = require("../src/user-repo");
 
 describe("Sleep", function() {
   let userRepo;

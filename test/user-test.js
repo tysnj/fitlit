@@ -1,10 +1,10 @@
-const chai = require("chai");
-const expect = chai.expect;
+// const chai = require("chai");
+// const expect = chai.expect;
 
-const dataFile = require("../data/user-test-data");
-const users = dataFile.userTestData;
+// const dataFile = require("../data/user-test-data");
+// const users = dataFile.userTestData;
 
-const User = require("../src/users");
+// const User = require("../src/users");
 
 
 describe ("User", function() {
