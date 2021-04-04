@@ -27,16 +27,16 @@ describe("Sleep", function() {
 
   it("should contain a single user's sleep data", function() {
     expect(sleep.userSleep).to.deep.equal([{
-      "userID": 1,
-      "date": "2019/06/16",
-      "hoursSlept": 4.1,
-      "sleepQuality": 3.8
-    },
-    {
     "userID": 1,
     "date": "2019/06/15",
     "hoursSlept": 6.1,
     "sleepQuality": 2.2
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/16",
+      "hoursSlept": 4.1,
+      "sleepQuality": 3.8
     }]);
   });
 

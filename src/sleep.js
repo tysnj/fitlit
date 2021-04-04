@@ -3,7 +3,7 @@
 
 class Sleep {
   constructor(userID, dataFile) {
-    this.allUserSleep = dataFile.reverse();
+    this.allUserSleep = dataFile;
     this.userSleep = this.allUserSleep.filter(datapoint => datapoint.userID === userID);
   }
 
@@ -25,7 +25,7 @@ class Sleep {
     return selectedDay.sleepQuality;
   }
 
-  getWeeklyDataForUser(date = this.userSleep[0].date) {
+  getWeeklyDataForUser(date) {
     const selectedDay = dayjs(date, "YYYY/MM/DD");
     let weekStart = selectedDay.subtract(6, "day").format("YYYY/MM/DD");
     return this.userSleep.reduce((weeklyStats, datapoint) => {
@@ -36,7 +36,7 @@ class Sleep {
     }, []);
   }
 
-  getWeeklyDataForAll(date = this.userSleep[0].date) {
+  getWeeklyDataForAll(date) {
     const selectedDay = dayjs(date, "YYYY/MM/DD");
     let weekStart = selectedDay.subtract(6, "day").format("YYYY/MM/DD");
     return this.allUserSleep.reduce((weeklyStats, datapoint) => {
@@ -65,7 +65,7 @@ class Sleep {
     return highQualityUsers.length;
   }
 
-  findUsersWithMostSleep(date = this.userSleep[0].date) {
+  findUsersWithMostSleep(date) {
    const usersWithMostHoursSleep = [];
    const dayData = this.allUserSleep.filter(datapoint => datapoint.date === date);
    const sortedSleepData = dayData.sort((a,b) => b.hoursSlept - a.hoursSlept);
