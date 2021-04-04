@@ -63,200 +63,9 @@ const picker = datepicker(calendar, {
 });
 
 //CHARTS
-// const chartUpdate = () => {
-//   userActivityBarChart.update(userActivityBarChart.data.datasets[0].data = [currentUser.dailyStepGoal, currentActivityData.getActivityByDay(date, "numSteps"), calculateStepGoal(), currentActivityData.findAvgDataForAllByDay(date, "numSteps")]);
-//   weeklyStepsChart.update();
-//   weeklyMinutesChart.update();
-//   weeklyStairsChart.update();
-//   waterBarChart.update();
-//   sleepBarChart.update();
-//   minuteComparisonChart.update();
-//   stairComparisonChart.update();
-// };
-
-
-const chartDisplay = () => {
-  let userActivityBarChart = new Chart(userBar, {
-  type: 'horizontalBar',
-  data: {
-    labels: ["Your Goal", "Your Steps", "Avg Goal", "Avg Steps"],
-    datasets: [{
-      label: "Steps",
-      data: [currentUser.dailyStepGoal, currentActivityData.getActivityByDay(date, "numSteps"), calculateStepGoal(), currentActivityData.findAvgDataForAllByDay(date, "numSteps")],
-      backgroundColor: [
-        "#f37981",
-        "#f3bf89",
-        "#f37981",
-        "#f3bf89"
-      ]
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Daily Steps"
-    }
-  }
-});
-
-let weeklyStepsChart = new Chart(weeklySteps, {
-  type: "line",
-  data: {
-    labels: getWeeklyDateInfo(date),
-    datasets: [{
-      label: "Steps",
-      type: "line",
-      data: getUserStepsOverWeek(),
-      borderColor: "#f3bf89"
-    }
-    ]},
-    options: {
-      title: {
-        display: true,
-        text: "Steps This Week"
-      },
-      // legend: {
-      //   display: true,
-      //   position: "bottom",
-      //   align: "center",
-      //   title: {
-      //     text: "Test",
-      //     color: "rgb(255, 99, 132)"
-      //
-      //   },
-      //   labels: {
-      //   }
-      // },
-      barValueSpacing:0,
-      scales: {
-        xAxes: [{
-          ticks: {
-            display: false
-          }
-        }]
-      }
-    }
-
-  });
-let weeklyMinutesChart = new Chart(weeklyMinutes, {
-  type: "line",
-  data: {
-    labels: getWeeklyDateInfo(date),
-    datasets: [
-    {
-      label: "Minutes",
-      type: "line",
-      data: getUserMinutesOverWeek(),
-      borderColor: "#f37981"
-    }
-    ]},
-    options: {
-      title: {
-        display: true,
-        text: "Minutes This Week"
-      },
-        // legend: {
-        //   display: true,
-        //   position: "bottom",
-        //   align: "center",
-        //   title: {
-        //     text: "Test",
-        //     color: "rgb(255, 99, 132)"
-        //
-        //   },
-        //   labels: {
-        //   }
-        // },
-       barValueSpacing:0,
-        scales: {
-        xAxes: [{
-          ticks: {
-            display: false
-          }
-        }]
-      }
-    }
-
-  });
-
-let weeklyStairsChart = new Chart(weeklyStairs, {
-  type: "line",
-  data: {
-    labels: getWeeklyDateInfo(date),
-    datasets: [
-    {
-      label: "Flights of Stairs",
-      type: "line",
-      data: getUserStairsOverWeek(),
-      borderColor: "#81f379"
-    }]},
-    options: {
-      title: {
-        display: true,
-        text: "Stairs This Week"
-          },
-          // legend: {
-          //   display: true,
-          //   position: "bottom",
-          //   align: "center",
-          //   title: {
-          //     text: "Test",
-          //     color: "rgb(255, 99, 132)"
-          //
-          //   },
-          //   labels: {
-          //   }
-          // },
-      barValueSpacing:0,
-      scales: {
-         xAxes: [{
-          ticks: {
-            display: false
-          }
-        }]
-      }
-    }
-  });
-
-
-let waterBarChart = new Chart(waterBar, {
-  type: 'bar',
-  data: {
-    labels: getWeeklyDateInfo(date),
-    datasets: [{
-      label: "Ounces",
-      data: getWeeklyWaterTotals(date),
-      backgroundColor: [
-        "#f37981",
-        "#f37981",
-        "#f37981",
-        "#f37981",
-        "#f37981",
-        "#f37981",
-        "#f37981"
-      ]
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Water This Week"
-    },
-    scales: {
-          xAxes: [{
-              ticks: {
-                  display: false
-              }
-          }]
-      }
-  }
-});
-
-let sleepBarChart = new Chart(sleepBar, {
-  type: 'bar',
-  data: {
-    labels: getWeeklyDateInfo(date),
-    datasets: [{
+const chartUpdate = () => {
+  const activityBarData = [currentUser.dailyStepGoal, currentActivityData.getActivityByDay(date, "numSteps"), calculateStepGoal(), currentActivityData.findAvgDataForAllByDay(date, "numSteps")]
+  const sleepBarData = [{
       label: "Quality",
       type: "bar",
       data: getWeeklySleepQual(date),
@@ -282,29 +91,9 @@ let sleepBarChart = new Chart(sleepBar, {
         "#f37981",
         "#f37981"
       ]
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Sleep This Week"
-    },
-    barValueSpacing:0,
-    scales: {
-          xAxes: [{
-              ticks: {
-                  display: false
-              }
-          }]
-      }
-  }
-});
-
-let minuteComparisonChart = new Chart(minuteComparisonBar, {
-  type: 'bar',
-  data: {
-    labels: ["Number of Minutes"],
-    datasets: [{
+    }
+  ];
+  const minCompData = [{
       label: "Your Stats",
       data: [currentActivityData.getActivityByDay(date, "minutesActive")],
       backgroundColor: [
@@ -320,34 +109,8 @@ let minuteComparisonChart = new Chart(minuteComparisonBar, {
       ],
       stack: "minutes"
     }
-  ]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Time Active"
-    },
-    scales: {
-      x: {
-          stacked: true
-      },
-      xAxes: [{
-        ticks: {
-            display: false
-        }
-    }],
-      y: {
-          stacked: true
-      }
-  }
-  }
-});
-
-let stairComparisonChart = new Chart(stairsComparisonBar, {
-  type: 'bar',
-  data: {
-    labels: ["Flights of Stairs"],
-    datasets: [{
+  ];
+  const stairCompData = [{
       label: "Your Stats",
       data: [currentActivityData.getActivityByDay(date, "flightsOfStairs")],
       backgroundColor: [
@@ -362,29 +125,331 @@ let stairComparisonChart = new Chart(stairsComparisonBar, {
         "#f3bf89"
       ],
       stack: "stairs"
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Stairs Climbed"
-    },
-    scales: {
-      x: {
-          stacked: true
-      },
-      xAxes: [{
-        ticks: {
-            display: false
-        }
-    }],
-      y: {
-          stacked: true
-      }
-  }
-  }
-});
+    }
+  ];
+  
+  userActivityBarChart.update(userActivityBarChart.data.datasets[0].data = activityBarData);
+  weeklyStepsChart.update(weeklyStepsChart.data.datasets[0].data = getUserStepsOverWeek());
+  weeklyMinutesChart.update(weeklyMinutesChart.data.datasets[0].data = getUserMinutesOverWeek());
+  weeklyStairsChart.update(weeklyStairsChart.data.datasets[0].data = getUserStairsOverWeek());
+  waterBarChart.update(waterBarChart.data.datasets[0].data = getWeeklyWaterTotals(date));
+  sleepBarChart.update(sleepBarChart.data.datasets = sleepBarData);
+  minuteComparisonChart.update(minuteComparisonChart.data.datasets = minCompData);
+  stairComparisonChart.update(stairComparisonChart.data.datasets = stairCompData);
 };
+
+
+// const chartDisplay = () => {
+  let userActivityBarChart = new Chart(userBar, {
+    type: 'horizontalBar',
+    data: {
+      labels: ["Your Goal", "Your Steps", "Avg Goal", "Avg Steps"],
+      datasets: [{
+        label: "Steps",
+        data: [currentUser.dailyStepGoal, currentActivityData.getActivityByDay(date, "numSteps"), calculateStepGoal(), currentActivityData.findAvgDataForAllByDay(date, "numSteps")],
+        backgroundColor: [
+          "#f37981",
+          "#f3bf89",
+          "#f37981",
+          "#f3bf89"
+        ]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Daily Steps"
+      }
+    }
+  });
+
+  let weeklyStepsChart = new Chart(weeklySteps, {
+    type: "line",
+    data: {
+      labels: getWeeklyDateInfo(date),
+      datasets: [{
+        label: "Steps",
+        type: "line",
+        data: getUserStepsOverWeek(),
+        borderColor: "#f3bf89"
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Steps This Week"
+      },
+      // legend: {
+      //   display: true,
+      //   position: "bottom",
+      //   align: "center",
+      //   title: {
+      //     text: "Test",
+      //     color: "rgb(255, 99, 132)"
+      //
+      //   },
+      //   labels: {
+      //   }
+      // },
+      barValueSpacing: 0,
+      scales: {
+        xAxes: [{
+          ticks: {
+            display: false
+          }
+        }]
+      }
+    }
+
+  });
+
+  let weeklyMinutesChart = new Chart(weeklyMinutes, {
+    type: "line",
+    data: {
+      labels: getWeeklyDateInfo(date),
+      datasets: [{
+        label: "Minutes",
+        type: "line",
+        data: getUserMinutesOverWeek(),
+        borderColor: "#f37981"
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Minutes This Week"
+      },
+      // legend: {
+      //   display: true,
+      //   position: "bottom",
+      //   align: "center",
+      //   title: {
+      //     text: "Test",
+      //     color: "rgb(255, 99, 132)"
+      //
+      //   },
+      //   labels: {
+      //   }
+      // },
+      barValueSpacing: 0,
+      scales: {
+        xAxes: [{
+          ticks: {
+            display: false
+          }
+        }]
+      }
+    }
+
+  });
+
+  let weeklyStairsChart = new Chart(weeklyStairs, {
+    type: "line",
+    data: {
+      labels: getWeeklyDateInfo(date),
+      datasets: [{
+        label: "Flights of Stairs",
+        type: "line",
+        data: getUserStairsOverWeek(),
+        borderColor: "#81f379"
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Stairs This Week"
+      },
+      // legend: {
+      //   display: true,
+      //   position: "bottom",
+      //   align: "center",
+      //   title: {
+      //     text: "Test",
+      //     color: "rgb(255, 99, 132)"
+      //
+      //   },
+      //   labels: {
+      //   }
+      // },
+      barValueSpacing: 0,
+      scales: {
+        xAxes: [{
+          ticks: {
+            display: false
+          }
+        }]
+      }
+    }
+  });
+
+  let waterBarChart = new Chart(waterBar, {
+    type: 'bar',
+    data: {
+      labels: getWeeklyDateInfo(date),
+      datasets: [{
+        label: "Ounces",
+        data: getWeeklyWaterTotals(date),
+        backgroundColor: [
+          "#f37981",
+          "#f37981",
+          "#f37981",
+          "#f37981",
+          "#f37981",
+          "#f37981",
+          "#f37981"
+        ]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Water This Week"
+      },
+      scales: {
+        xAxes: [{
+          ticks: {
+            display: false
+          }
+        }]
+      }
+    }
+  });
+
+  let sleepBarChart = new Chart(sleepBar, {
+    type: 'bar',
+    data: {
+      labels: getWeeklyDateInfo(date),
+      datasets: [{
+          label: "Quality",
+          type: "bar",
+          data: getWeeklySleepQual(date),
+          backgroundColor: [
+            "#f3bf89",
+            "#f3bf89",
+            "#f3bf89",
+            "#f3bf89",
+            "#f3bf89",
+            "#f3bf89",
+            "#f3bf89"
+          ]
+        },
+        {
+          label: "Hours",
+          data: getWeeklySleepHours(date),
+          backgroundColor: [
+            "#f37981",
+            "#f37981",
+            "#f37981",
+            "#f37981",
+            "#f37981",
+            "#f37981",
+            "#f37981"
+          ]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Sleep This Week"
+      },
+      barValueSpacing: 0,
+      scales: {
+        xAxes: [{
+          ticks: {
+            display: false
+          }
+        }]
+      }
+    }
+  });
+
+  let minuteComparisonChart = new Chart(minuteComparisonBar, {
+    type: 'bar',
+    data: {
+      labels: ["Number of Minutes"],
+      datasets: [{
+          label: "Your Stats",
+          data: [currentActivityData.getActivityByDay(date, "minutesActive")],
+          backgroundColor: [
+            "#f37981"
+          ],
+          stack: "minutes"
+        },
+        {
+          label: "Average",
+          data: [currentActivityData.findAvgDataForAllByDay(date, "minutesActive")],
+          backgroundColor: [
+            "#f3bf89"
+          ],
+          stack: "minutes"
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Time Active"
+      },
+      scales: {
+        x: {
+          stacked: true
+        },
+        xAxes: [{
+          ticks: {
+            display: false
+          }
+        }],
+        y: {
+          stacked: true
+        }
+      }
+    }
+  });
+
+  let stairComparisonChart = new Chart(stairsComparisonBar, {
+    type: 'bar',
+    data: {
+      labels: ["Flights of Stairs"],
+      datasets: [{
+          label: "Your Stats",
+          data: [currentActivityData.getActivityByDay(date, "flightsOfStairs")],
+          backgroundColor: [
+            "#f37981"
+          ],
+          stack: "stairs"
+        },
+        {
+          label: "Average",
+          data: [currentActivityData.findAvgDataForAllByDay(date, "flightsOfStairs")],
+          backgroundColor: [
+            "#f3bf89"
+          ],
+          stack: "stairs"
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Stairs Climbed"
+      },
+      scales: {
+        x: {
+          stacked: true
+        },
+        xAxes: [{
+          ticks: {
+            display: false
+          }
+        }],
+        y: {
+          stacked: true
+        }
+      }
+    }
+  });
+// };
 
 //FUNCTIONS
 
@@ -404,7 +469,7 @@ function displayUserData() {
   calculateStepGoal();
   displayAvgSleepHoursAllTime();
   displayAvgSleepQualityAllTime();
-  chartDisplay();
+  chartUpdate();
 }
 
 function updateDailyBadges() {
