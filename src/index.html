@@ -11,8 +11,8 @@
   </head>
   <body>
     <header class="header">
-      <h1 id="dateDisplay" class="date">Date</h1>
       <h2 id="greeting" class="greeting">Hey</h2>
+      <h1 id="dateDisplay" class="date">Date</h1>
       <div>
         <!-- <input id="datePicker" class="date-picker" type="text"/> -->
         <img id="calendar" class="calendar" src="../assets/calendar.png">
@@ -55,20 +55,28 @@
           <div class="weekly-header">
             <h3 class="weekly-chart-title">Achievements</h3>
           </div>
-          <div>
+          <div class="steps-bar">
             <canvas id="userBar" class="weekly-bar">
           </canvas>
           </div>
           <div class="comparison-bar">
-            <canvas id="minuteComparisonBar" class="daily-bar">
-            </canvas>
-            <canvas id="stairsComparisonBar" class="daily-bar">
-            </canvas>
+            <span class="double-chart">
+              <canvas id="minuteComparisonBar" class="daily-bar"></canvas>
+            </span>
+            <span class="double-chart">
+              <canvas id="stairsComparisonBar" class="daily-bar"></canvas>
+            </span>
           </div>
-          <div>
+          <div class="line-chart-group">
+            <div class="line-chart">
             <canvas id="weeklySteps" class="weekly-line"></canvas>
-            <canvas id="weeklyMinutes" class="weekly-line"></canvas>
-            <canvas id="weeklyStairs" class="weekly-line"></canvas>
+            </div>
+            <div class="line-chart">
+              <canvas id="weeklyMinutes" class="weekly-line"></canvas>
+            </div>
+            <div class="line-chart">
+              <canvas id="weeklyStairs" class="weekly-line"></canvas>
+            </div>
           </div>
         </section>
         <section class="weekly-water-sleep">
@@ -87,9 +95,11 @@
           <span class="average-sleep-quality">
             <p id="avgSleepQuality" class="avg-number">100</p>
             <p>All-Time Average Quality</p>
-        </section>
           </span>
+        </section>
+        <div class="spacer"></div>
       </main>
+      <div class="spacer"></div>
       <aside id="userInfoSection" class="user-info-section">
         <div class="left-side">
           <p class="user-info">ID</p>

@@ -35,24 +35,26 @@
   .header {
     display: flex;
     justify-content: space-between;
-    height: 5%;
-    margin-bottom: 5%;
-
+    align-items: center;
+    align-content: center;
+    height: 3%;
+    margin-bottom: -1%;
+    margin-top: 7%;
   }
 
   .date {
-    font-size: 1rem;
-    margin-left: 1rem;
+    font-size: 140%;
+    margin-left: .5rem;
   }
 
   .greeting {
     font-family: "Permanent Marker";
-    margin-right: 2rem;
-    font-size: 1.8rem;
+    /* margin-right: 2rem; */
+    font-size: 175%;
   }
 
   .calendar {
-    margin-right: 1rem;
+    margin-right: .5rem;
     width: 60px;
     height: 60px;
   }
@@ -78,7 +80,7 @@
   .daily-stats {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     font-family: "Permanent Marker";
   }
@@ -86,25 +88,35 @@
   .row {
     display: flex;
     justify-content: space-around;
+    align-items: space-around;
+    margin-bottom: 4%;
   }
   .stats {
     margin-left: .2rem;
   }
 
   .daily-icon {
-    font-size: 13px;
+    font-size: .9em;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     border: 2px solid #1c5061;
-    padding: 4px 15px 3px;
+    padding: 7px 17px 5px;
     border-radius: 20px;
     background-color: #1c5061;
+    position: relative;
+    width: 20%;
   }
 
   .icon {
     width: 50px;
     height: 50px;
+  }
+
+  .icon-label {
+    text-align: center;
+    width: 110%;
   }
 
   .steps-label,
@@ -118,45 +130,50 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: space-between; */
+    width: 99%;
+    margin-bottom: -98%;
   }
 
   .weekly-header {
-
+    margin: -2%;
   }
 
-  .weekly-chart-title {
-
+  .line-chart-group {
+    height: 64%;
+    width: 95%;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
   }
 
-  .weekly-line {
-    height: 5em;
-    width: 98%;
-    border: 2px solid #1c5061;
-  }
-
-  .weekly-bar,
-  .comparison-bar {
-    height: 3em;
+  .line-chart {
+    height: 10%;
+    position: relative;
     width: 98%;
     /* border: 2px solid #1c5061; */
+    margin-bottom: 30%;
   }
 
   .comparison-bar {
-    width: 40%;
-    height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
+    margin-bottom: -3%;
   }
 
   .daily-bar {
     width: 40%;
   }
 
-  .user-bar,
-  .all-bar {
-
+  .steps-bar {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -3%;
   }
 
   /* Activity Data Section  */
@@ -164,33 +181,24 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    height: 25%;
+    height: 100%;
+    margin-bottom: 2%;
   }
 
   .water-intake,
-  .sleep-data {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .vert-bar {
-    height: 75%;
-    width: 75%;
-  }
-
-  .water-chart
-  .sleep-chart {
-
+  .sleep-data, .double-chart {
+    width: 47%;
+    height: 100%;
   }
 
   .averages-section {
     display: flex;
     justify-content: center;
-    width: 95%;
+    /* width: 95%; */
     height: 20%;
+    /* margin-bottom: 20%; */
   }
+
   .average-sleep-hours,
   .average-sleep-quality {
     display: flex;
@@ -210,10 +218,15 @@
     margin: 0;
   }
 
+  .spacer {
+    height: 30%;
+    position: fixed;
+  }
+
   /* User Data Section  */
   .user-info-section {
     background-color: #011F2C;
-    position: sticky;
+    position: fixed;
     bottom: 0;
     display: flex;
     align-items: space-around;
@@ -222,6 +235,8 @@
     opacity: 65%;
     color: #f3bf89;
     margin-bottom: 0;
+    height: 30%;
+    clear: both;
   }
 
   .right-side {
