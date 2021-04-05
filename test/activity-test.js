@@ -68,20 +68,22 @@ describe("Activity", function() {
   });
 
   it("should find all the days where they achieved their step goal", function () {
-    expect(activity1.getDaysGoalAchieved(userRepo.users[0].dailyStepGoal)).to.deep.equal([]);
-    expect(activity2.getDaysGoalAchieved(userRepo.users[1].dailyStepGoal)).to.deep.equal([
-      {
-        "userID": 2,
-        "date": "2019/06/15",
-        "numSteps": 5294,
-        "minutesActive": 138,
-        "flightsOfStairs": 10,
-        "day": 6
-      }
-    ]);
+    expect(activity1.getDaysGoalAchieved(userRepo.users[0].dailyStepGoal)).to.
+      deep.equal([]);
+    expect(activity2.getDaysGoalAchieved(userRepo.users[1].dailyStepGoal)).to.
+      deep.equal([
+        {
+          "userID": 2,
+          "date": "2019/06/15",
+          "numSteps": 5294,
+          "minutesActive": 138,
+          "flightsOfStairs": 10,
+          "day": 6
+        }
+      ]);
   });
 
-  it("should find the user\'s all-time stair climbing record", function() {
+  it("should find the user's all-time stair climbing record", function() {
     expect(activity1.getStairClimbingRecord()).to.deep.equal(
       {
         "userID": 1,

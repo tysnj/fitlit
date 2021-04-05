@@ -51,7 +51,7 @@ describe ("User", function() {
     expect(user.friends[0]).to.equal(16);
   });
 
-  it("should get the user\'s first name", function() {
+  it("should get the user's first name", function() {
     expect(user.getUserName()).to.equal("John");
   });
 })

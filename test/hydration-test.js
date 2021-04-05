@@ -42,16 +42,16 @@ describe ("Hydration", function() {
     )
   });
 
-  it("should get the user\'s daily hydration average over all time", function() {
+  it("should get the user's daily hydration average over all time", function() {
     expect(hydration.getDailyAvgAllTime()).to.equal(53);
   });
 
-  it("should get the user\'s hydration data for the specified day", function() {
+  it("should get the user's hydration data for the specified day", function() {
     expect(hydration.getOzOnDay()).to.equal(69)
     expect(hydration.getOzOnDay(hydration.userHydration[1].date)).to.equal(37);
   });
 
-  it("should get the user\'s daily hydration data for the week leading to specified day", function() {
+  it("should get the user's daily hydration data for the week leading to specified day", function() {
     // expect(hydration.getDailyOverWeek()).to.deep.equal([
     //   {
     //     "userID": 1,

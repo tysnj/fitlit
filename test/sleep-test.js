@@ -10,7 +10,7 @@
 // const UserRepository = require("../src/user-repo");
 
 describe("Sleep", function() {
-  let userRepo;
+  let userRepo, sleep;
 
   beforeEach(function() {
     userRepo = new UserRepository(users);
@@ -27,10 +27,10 @@ describe("Sleep", function() {
 
   it("should contain a single user's sleep data", function() {
     expect(sleep.userSleep).to.deep.equal([{
-    "userID": 1,
-    "date": "2019/06/15",
-    "hoursSlept": 6.1,
-    "sleepQuality": 2.2
+      "userID": 1,
+      "date": "2019/06/15",
+      "hoursSlept": 6.1,
+      "sleepQuality": 2.2
     },
     {
       "userID": 1,
@@ -58,11 +58,11 @@ describe("Sleep", function() {
 
   it("should be able to find a user's hours slept per day and sleep quality over a week", function() {
     expect(sleep.getWeeklyDataForUser(`2019/06/16`)).to.deep.equal([{
-    "userID": 1,
-    "day": 6,
-    "date": "2019/06/15",
-    "hoursSlept": 6.1,
-    "sleepQuality": 2.2
+      "userID": 1,
+      "day": 6,
+      "date": "2019/06/15",
+      "hoursSlept": 6.1,
+      "sleepQuality": 2.2
     },
     {
       "userID": 1,
