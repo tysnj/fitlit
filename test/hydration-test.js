@@ -1,13 +1,13 @@
-// const chai = require("chai");
-// const expect = chai.expect;
+const chai = require("chai");
+const expect = chai.expect;
 
-// const userDataFile = require("../data/user-test-data");
-// const users = userDataFile.userTestData;
-// const UserRepository = require("../src/user-repo");
+const userDataFile = require("../data/user-test-data");
+const users = userDataFile.userTestData;
+const UserRepository = require("../src/user-repo");
 
-// const dataFile = require("../data/hydration-test-data");
-// const hydrationData = dataFile.hydrationTestData.reverse();
-// const Hydration = require("../src/hydration");
+const dataFile = require("../data/hydration-test-data");
+const hydrationData = dataFile.hydrationTestData.reverse();
+const Hydration = require("../src/hydration");
 
 describe ("Hydration", function() {
   let userRepo, hydration;

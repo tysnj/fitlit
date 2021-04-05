@@ -1,5 +1,7 @@
-// var dayjs = require('dayjs');
-// dayjs().format();
+if (typeof module !== "undefined") {
+  var dayjs = require('dayjs');
+  dayjs().format();
+};
 
 class Activity {
   constructor(userID, data) {
@@ -61,9 +63,6 @@ class Activity {
   };
 
 };
-
-
-
 
 if (typeof module !== "undefined") {
   module.exports = Activity;

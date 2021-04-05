@@ -1,13 +1,13 @@
-// const chai = require("chai");
-// const expect = chai.expect;
+const chai = require("chai");
+const expect = chai.expect;
 
-// const userDataFile = require("../data/user-test-data");
-// const users = userDataFile.userTestData;
-// const UserRepository = require("../src/user-repo");
+const userDataFile = require("../data/user-test-data");
+const users = userDataFile.userTestData;
+const UserRepository = require("../src/user-repo");
 
-// const dataFile = require("../data/activity-test-data");
-// const activityData = dataFile.activityTestData.reverse();
-// const Activity = require("../src/activity");
+const dataFile = require("../data/activity-test-data");
+const activityData = dataFile.activityTestData.reverse();
+const Activity = require("../src/activity");
 
 describe("Activity", function() {
   let userRepo, activity1, activity2;

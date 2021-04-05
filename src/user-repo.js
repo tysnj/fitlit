@@ -1,4 +1,6 @@
-// const User = require("./users");
+if (typeof module !== 'undefined') {
+  User = require("./users");
+}
 
 class UserRepository {
   constructor(users) {
@@ -10,7 +12,7 @@ class UserRepository {
   }
 
   calculateAvgStepGoal() {
-    return (this.users.reduce((acc, user) => acc + user.dailyStepGoal, 0)) / 
+    return (this.users.reduce((acc, user) => acc + user.dailyStepGoal, 0)) /
       this.users.length;
   }
 }
