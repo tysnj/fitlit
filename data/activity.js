@@ -35001,6 +35001,4 @@ const activityData = [
   }
 ];
 
-if (typeof module !== "undefined") {
-  module.exports = UserRepository;
-};
+

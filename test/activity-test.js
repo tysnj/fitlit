@@ -1,17 +1,16 @@
-const chai = require("chai");
-const expect = chai.expect;
+// const chai = require("chai");
+// const expect = chai.expect;
 
-const userDataFile = require("../data/user-test-data");
-const users = userDataFile.userTestData;
-const UserRepository = require("../src/user-repo");
-const User = require("../src/users")
+// const userDataFile = require("../data/user-test-data");
+// const users = userDataFile.userTestData;
+// const UserRepository = require("../src/user-repo");
 
-const dataFile = require("../data/activity-test-data");
-const activityData = dataFile.activityTestData.reverse();
-const Activity = require("../src/activity");
+// const dataFile = require("../data/activity-test-data");
+// const activityData = dataFile.activityTestData.reverse();
+// const Activity = require("../src/activity");
 
 describe("Activity", function() {
-  let activity;
+  let userRepo, activity1, activity2;
 
   beforeEach(function() {
     userRepo = new UserRepository(users);
@@ -69,20 +68,22 @@ describe("Activity", function() {
   });
 
   it("should find all the days where they achieved their step goal", function () {
-    expect(activity1.getDaysGoalAchieved(userRepo.users[0].dailyStepGoal)).to.deep.equal([]);
-    expect(activity2.getDaysGoalAchieved(userRepo.users[1].dailyStepGoal)).to.deep.equal([
-      {
-        "userID": 2,
-        "date": "2019/06/15",
-        "numSteps": 5294,
-        "minutesActive": 138,
-        "flightsOfStairs": 10,
-        "day": 6
-      }
-    ]);
+    expect(activity1.getDaysGoalAchieved(userRepo.users[0].dailyStepGoal)).to.
+      deep.equal([]);
+    expect(activity2.getDaysGoalAchieved(userRepo.users[1].dailyStepGoal)).to.
+      deep.equal([
+        {
+          "userID": 2,
+          "date": "2019/06/15",
+          "numSteps": 5294,
+          "minutesActive": 138,
+          "flightsOfStairs": 10,
+          "day": 6
+        }
+      ]);
   });
 
-  it("should find the user\'s all-time stair climbing record", function() {
+  it("should find the user's all-time stair climbing record", function() {
     expect(activity1.getStairClimbingRecord()).to.deep.equal(
       {
         "userID": 1,

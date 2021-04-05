@@ -1,17 +1,16 @@
-const chai = require("chai");
-const expect = chai.expect;
+// const chai = require("chai");
+// const expect = chai.expect;
 
-const userDataFile = require("../data/user-test-data");
-const users = userDataFile.userTestData;
-const UserRepository = require("../src/user-repo");
-const User = require("../src/users")
+// const userDataFile = require("../data/user-test-data");
+// const users = userDataFile.userTestData;
+// const UserRepository = require("../src/user-repo");
 
-const dataFile = require("../data/hydration-test-data");
-const hydrationData = dataFile.hydrationTestData.reverse();
-const Hydration = require("../src/hydration");
+// const dataFile = require("../data/hydration-test-data");
+// const hydrationData = dataFile.hydrationTestData.reverse();
+// const Hydration = require("../src/hydration");
 
 describe ("Hydration", function() {
-  let hydration;
+  let userRepo, hydration;
 
   beforeEach(function() {
     userRepo = new UserRepository(users);
@@ -43,17 +42,17 @@ describe ("Hydration", function() {
     )
   });
 
-  it("should get the user\'s daily hydration average over all time", function() {
+  it("should get the user's daily hydration average over all time", function() {
     expect(hydration.getDailyAvgAllTime()).to.equal(53);
   });
 
-  it("should get the user\'s hydration data for the specified day", function() {
+  it("should get the user's hydration data for the specified day", function() {
     expect(hydration.getOzOnDay()).to.equal(69)
     expect(hydration.getOzOnDay(hydration.userHydration[1].date)).to.equal(37);
   });
 
-  it("should get the user\'s daily hydration data for the week leading to specified day", function() {
-    expect(hydration.getDailyOverWeek()).to.deep.equal([
+  it("should get the user's daily hydration data for the week leading to specified day", function() {
+    expect(hydration.getDailyOverWeek("2019/06/16")).to.deep.equal([
       {
         "userID": 1,
         "date": "2019/06/16",

@@ -1,5 +1,6 @@
 class User {
-  constructor({ id, name, address, email, strideLength, dailyStepGoal, friends }) {
+  constructor({ id, name, address, email, strideLength, dailyStepGoal, 
+    friends }) {
     this.id = id;
     this.name = name;
     this.address = address;
@@ -16,4 +17,4 @@ class User {
 
 if (typeof module !== "undefined") {
   module.exports = User;
-};
+}
