@@ -52,19 +52,19 @@ describe ("Hydration", function() {
   });
 
   it("should get the user's daily hydration data for the week leading to specified day", function() {
-    // expect(hydration.getDailyOverWeek()).to.deep.equal([
-    //   {
-    //     "userID": 1,
-    //     "date": "2019/06/16",
-    //     "numOunces": 69,
-    //     "day": 0
-    //   },
-    //   {
-    //     "userID": 1,
-    //     "date": "2019/06/15",
-    //     "numOunces": 37,
-    //     "day": 6
-    //   }]);
+    expect(hydration.getDailyOverWeek("2019/06/16")).to.deep.equal([
+      {
+        "userID": 1,
+        "date": "2019/06/16",
+        "numOunces": 69,
+        "day": 0
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/15",
+        "numOunces": 37,
+        "day": 6
+      }]);
     expect(hydration.getDailyOverWeek("2019/06/15")).to.deep.equal([
       {
         "userID": 1,
