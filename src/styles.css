@@ -402,7 +402,6 @@
     display: flex;
     width: 100%;
     margin-top: -0.6%;
-    margin-left: -1%;
     /* align-items: space-between; */
   }
 
@@ -424,7 +423,7 @@
     justify-content: center;
     align-items: center;
     border: 2px solid #1c5061;
-    padding: 9px 17px 9px;
+    padding: 7px 17px 7px;
     border-radius: 20px;
     background-color: #1c5061;
     position: relative;
@@ -445,7 +444,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 7%;
+    margin-top: 5.5%;
 
 
   }
@@ -459,11 +458,7 @@
     width: 60%;
     /* height: 100%; */
   }
-/*
-  .vert-bar {
-    width: 100px;
-    height: 100px;
-  } */
+
 
   .averages-section {
     grid-area: averages;
@@ -493,33 +488,24 @@
     margin-right: 10em;
   }
 
-  /* .line-chart {
-    width: 150px;
-    height: 150px;
-  } */
 
   .weekly-header {
-    /* margin: -2%; */
-    margin-right: 53%;
-    margin-bottom: -3%;
+    margin-bottom: 0.2%;
     margin-top: 1%;
+    margin-bottom: -4%;
   }
 
   .line-chart-group {
     height: 30%;
     width: 100%;
-    /* border: 2px solid red; */
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-around;
-    /* margin-top: 20%; */
     margin-left: 2.5%;
     margin-top: -6%;
   }
 
   .line-chart {
     height: 20%;
-    /* position: relative; */
     width: 30%;
     margin-top: 5%;
   }
@@ -527,34 +513,28 @@
   .bar-charts {
     display: flex;
     justify-content: space-between;
-    /* margin-top: 5%; */
   }
+
   .steps-comparison {
-    width: 100%;
+    /* width: 100%; */
     height: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 1%;
-    margin-right: 30%;
+    margin-left: 4%;
+
   }
   .steps-bar {
-    /* width: 75%; */
-    height: 90%;
-    margin-left: -3%;
-    /* margin-top: 20%; */
-    /* margin-bottom: 15%; */
+    height: 30%;
+    margin-top: -2%;
   }
 
   .comparison-bar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    margin-top: 4.5%;
-    margin-left: -30%;
+    align-items: flex-end;
   }
 
   .weekly-bar {
@@ -562,20 +542,20 @@
     height: 220px;
   }
 
-  .double-chart {
+  /* .double-chart {
     height: 100%;
     width: 100%;
-  }
+  } */
 
   .minutes-bar {
-    width: 420px;
-    height: 202px;
+    width: 430px;
+    height: 220px;
     margin-left: -7%;
   }
 
   .stair-bar {
-    width: 420px;
-    height: 202px;
+    width: 430px;
+    height: 220px;
     margin-left: 3%;
   }
 
@@ -589,7 +569,8 @@
   .averages-section {
     height: 100%;
     width: 100%;
-    margin-bottom: 15%;
+    /* margin-bottom: 15%; */
+    margin-top: 9%;
     /* display: flex;
     flex-direction: column;
     justify-content: space-around; */
@@ -615,8 +596,14 @@
     margin-top: 20%;
   }
 
+  .time-label {
+    margin-top: -8%;
+    margin-bottom: 4%;
+  }
+
   .quality-label {
-    margin-bottom: 40%;
+    margin-top: -8%;
+    /* margin-bottom: 40%; */
   }
 
   canvas {
