@@ -10,6 +10,7 @@
       <title>FitLit</title>
   </head>
   <body>
+    <div class="wrapper">
     <header class="header">
       <h2 id="greeting" class="greeting">Hey</h2>
       <h1 id="dateDisplay" class="date">Date</h1>
@@ -19,9 +20,10 @@
       </div>
     </header>
     <div class="page">
-      <h2 class="stats">Today's Stats</h2>
       <main class="main">
         <section class="daily-stats">
+          <h2 class="stats">Today's Stats</h2>
+          <div class="icons-list">
           <div class="row">
             <span class="daily-icon">
              <img class="icon" src="../assets/running.png">
@@ -50,14 +52,17 @@
               <label id="sleepQualityLabel" class="icon-label">Stars</label>
             </span>
           </div>
+        </div>
         </section>
         <section class="weekly-activity">
-          <div class="weekly-header">
-            <h3 class="weekly-chart-title">Achievements</h3>
-          </div>
-          <div class="steps-bar">
-            <canvas id="userBar" class="weekly-bar">
-          </canvas>
+          <div class="bar-charts">
+          <div class="steps-comparison">
+            <div class="weekly-header">
+              <h3 class="weekly-chart-title">Achievements</h3>
+            </div>
+            <div class="steps-bar">
+              <canvas id="userBar" class="weekly-bar"></canvas>
+            </div>
           </div>
           <div class="comparison-bar">
             <span class="double-chart">
@@ -67,6 +72,7 @@
               <canvas id="stairsComparisonBar" class="daily-bar"></canvas>
             </span>
           </div>
+        </div>
           <div class="line-chart-group">
             <div class="line-chart">
             <canvas id="weeklySteps" class="weekly-line"></canvas>
@@ -96,10 +102,11 @@
             <p id="avgSleepQuality" class="avg-number">100</p>
             <p>All-Time Average Quality</p>
           </span>
+          <div class="spacer"></div>
         </section>
         <div class="spacer"></div>
       </main>
-      <div class="spacer"></div>
+      <!-- <div class="spacer"></div> -->
       <aside id="userInfoSection" class="user-info-section">
         <div class="left-side">
           <p class="user-info">ID</p>
@@ -114,6 +121,7 @@
         </div>
       </aside>
     </div>
+  </div>
     <script src="../node_modules/js-datepicker/dist/datepicker.min.js"></script>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script>dayjs().format()</script>
