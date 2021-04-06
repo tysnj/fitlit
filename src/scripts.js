@@ -1,9 +1,10 @@
 let allUsers = new UserRepository(userData);
-let currentUser = allUsers.users[0];
+let currentUser = allUsers.users[getRandomIntInclusive(0, allUsers.users.length)];
 let date = `2019/09/22`;
 let currentHydrationData = new Hydration(currentUser.id, hydrationData);
 let currentSleepData = new Sleep(currentUser.id, sleepData);
 let currentActivityData = new Activity(currentUser.id, activityData);
+
 
 //CHART GLOBAL DEFAULTS
 Chart.defaults.global.defaultFontFamily = "Permanent Marker";
@@ -476,6 +477,11 @@ let stairComparisonChart = new Chart(stairsComparisonBar, {
 // };
 
 //FUNCTIONS
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+}
 
 const switchUser = (userID) => {
   currentUser = allUsers.users.find(user => user.id === userID);
@@ -493,6 +499,7 @@ function displayUserData() {
   calculateStepGoal();
   displayAvgSleepHoursAllTime();
   displayAvgSleepQualityAllTime();
+  getStepStreak()
   updateChart();
 }
 
@@ -528,7 +535,7 @@ function displayIDCard(userID = 1) {
 }
 
 function calculateStepGoal() {
-  return allUsers.users.reduce((acc, user) => acc + user.dailyStepGoal, 0) / 
+  return allUsers.users.reduce((acc, user) => acc + user.dailyStepGoal, 0) /
     allUsers.users.length;
 }
 
@@ -573,4 +580,11 @@ function displayAvgSleepHoursAllTime() {
 function displayAvgSleepQualityAllTime() {
   avgSleepQuality.innerHTML = Math.round
   (currentSleepData.calculateAvgQuality());
+}
+
+function getStepStreak() {
+  let streaks = currentActivityData.findStepStreak()
+  // "Step it up"
+  /* something.innerText = */ console.log(`You have ${streaks.length} three day streaks to date!`)
+  /* somethingElse.innerText = */ console.log(`Most recent streak to date: ${streaks[0]}`)
 }
