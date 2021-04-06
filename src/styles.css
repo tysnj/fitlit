@@ -338,24 +338,43 @@
   .page {
     grid-area: page;
     display:grid;
-    grid-template-columns: 20% 80%;
-    grid-template-rows: 100%;
+    border-top: 4px solid #1c5061;
+    grid-template-columns: 100%;
+    grid-template-rows: 90% 10%;
     grid-template-areas:
-      "aside main";
+      "main"
+      "aside";
   }
 
   .user-info-section {
-    /* background-color: #1c5061; */
+    background-color: #1c5061;
     grid-area: aside;
-    /* opacity: 65%; */
+    opacity: 65%;
     color: #f3bf89;
-    margin-left: 3%;
-    margin-top: 62%;
+    /* margin-right: 3%;
+    margin-left: 3%; */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    color: #f3bf89;
+    /* margin-top: 62%; */
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
   }
 
-  .user-info {
-    margin-bottom: 10%;
+  .left-side, .right-side {
+    display: flex;
+    justify-content: space-around;
+
   }
+
+  /* .user-info {
+    margin-bottom: 10%;
+  } */
 
   .main {
     grid-area: main;
@@ -414,18 +433,50 @@
   }
 
   .weekly-water-sleep {
-    background-color: turquoise;
+    /* background-color: turquoise; */
     grid-area: weekly;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 26%;
+
+    
   }
 
+  .water-intake {
+    width: 60%;
+    /* height: 100px; */
+  }
+
+  .sleep-data {
+    width: 60%;
+    /* height: 100%; */
+  }
+/* 
+  .vert-bar {
+    width: 100px;
+    height: 100px;
+  } */
+
   .averages-section {
-    background-color: brown;
     grid-area: averages;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* width: 95%; */
+    height: 20%;
+    /* margin-bottom: 20%; */
   }
 
   .spacer { 
     background-color: lightcoral;
-    grid-area: spacer; */
+    grid-area: spacer;
+    height: 100%;
+    width: 100%; 
   }
 
   .icon {
@@ -443,20 +494,21 @@
   }
 
   .line-chart-group {
-    height: 60%;
+    height: 30%;
     width: 100%;
     /* border: 2px solid red; */
     display: flex;
     /* flex-direction: column; */
     justify-content: space-around;
-    margin-top: 20%;
+    /* margin-top: 20%; */
+    margin-left: 2.5%;
   }
 
   .line-chart {
     height: 20%;
     /* position: relative; */
-    width: 30%
-    /* margin-top: 30%; */
+    width: 30%;
+    margin-top: 5%;
   }
 
   .bar-charts {
@@ -465,41 +517,72 @@
     /* margin-top: 5%; */
   }
   .steps-comparison {
-    width: 100%;
+    width: 60%;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    margin-top: 1%;
   }
   .steps-bar {
-    width: 100%;
+    width: 75%;
     height: 90%;
-    margin-top: 20%;
+    /* margin-top: 20%; */
+    /* margin-bottom: 15%; */
   }
 
   .comparison-bar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100%;
-    margin-top: 10%
+    margin-top: 5.5%
   }
 
-
+  .double-chart {
+    height: 100%;
+    width: 45%;
+  }
   .daily-bar {
-    width: 70%;
-  }
-
-  .steps-bar {
-    width: 50%;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-    margin-bottom: -3%;
+    width: 80%;
+    height: 100%;
   }
 
   .weekly-header {
     margin: 0;
+  }
+
+  .averages-section {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 15%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-around; */
+  }
+
+  .average-sleep-hours,
+  .average-sleep-quality {
+    display: flex;
+    font-family: "Permanent Marker";
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .avg-number {
+    font-size: 1.5rem;
+    border: 4px solid #f37981;
+    border-radius: 50%;
+    width: 50%;
+    padding: 5%;
+    margin-top: 20%;
+  }
+
+  .quality-label {
+    margin-bottom: 40%;
   }
 
   canvas {
