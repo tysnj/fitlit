@@ -53,7 +53,7 @@ class Activity {
   };
 
   getStairClimbingRecord() {
-    let sorted = this.userActivity.sort((a, b) => b.flightsOfStairs)
+    let sorted = this.userActivity.sort((a, b) => b.flightsOfStairs - a.flightsOfStairs);
     return sorted[0];
   };
 
@@ -61,6 +61,22 @@ class Activity {
     const dayData = this.allUserActivity.filter(datapoint => datapoint.date === date);
     return Math.round((dayData.reduce((acc, datapoint) => acc + datapoint[dataType], 0)) / dayData.length);
   };
+
+  findStepStreak() {
+    let stepStreak = [];
+    let stepStreakDates = [];
+    this.userActivity.reverse().forEach(item => {
+      if (stepStreak.length >= 3) {
+        stepStreak.shift();
+      }
+      stepStreak.push(item.numSteps);
+      if (stepStreak[2] > stepStreak[1] && stepStreak[1] > stepStreak[0]) {
+        stepStreakDates.push(item.date);
+      }
+    });
+    return stepStreakDates;
+  }
+
 
 };
 
