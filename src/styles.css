@@ -501,26 +501,26 @@
    }
 
    .weekly-bar {
-     width: 220%;
-     height: 125%;
+     /* width: 220%;
+     height: 125%; */
    }
 
    .double-chart {
      display: flex;
      align-items: flex-end;
-     width: 100%;
-     height: 100%;
+     /* width: 100%;
+     height: 100%; */
    }
 
    .minutes-bar {
-     width: 150%;
-     height: 150%;
+     width: 100%;
+     height: 100%;
      margin-left: -7%;
    }
 
    .stair-bar {
-     width: 150%;
-     height: 150%;
+     width: 100%;
+     height: 100%;
      margin-left: 3%;
    }
 
@@ -781,7 +781,7 @@
   }
 
   .steps-comparison {
-    height: 30%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -791,8 +791,8 @@
   }
 
   .steps-bar {
-    height: 100%;
-    width: 100%;
+    /* height: 110%; */
+    /* width: 110%; */
     margin-top: -2%;
   }
 
@@ -800,30 +800,32 @@
     display: flex;
     align-items: flex-end;
     width: 100%;
+    height: 100%;
     margin-left: 6%;
+    margin-top: 5%;
   }
 
   .weekly-bar {
-    width: 325%;
-    height: 225%;
+    width: 24em;
+    height: 14em;
   }
 
   .double-chart {
     display: flex;
     align-items: flex-end;
-    width: 100%;
-    height: 100%;
+    width: 20em;
+    height: 15em;
   }
 
   .minutes-bar {
-    width: 150%;
-    height: 150%;
+    width: 50%;
+    height: 100%;
     margin-left: -7%;
   }
 
   .stair-bar {
-    width: 150%;
-    height: 150%;
+    width: 50%;
+    height: 100%;
     margin-left: 3%;
   }
 
