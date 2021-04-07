@@ -1,82 +1,59 @@
-# FitLit Starter Kit
+# FitLit Pair Project
+## Overview
 
-The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
+  For this project, we created a fitness app using TDD  that displays metrics on activity levels, sleep, and hydration. Currently, the application selects a random user from the users datafile on page load. 
 
-## Setup
+  On page load, the most recent day of data is automatically displayed. The user can change the date by clicking on the calendar icon in the top right corner.
 
-1. Within your group, decide on one person to have the project repository (repo) on their GitHub account. Then, that person should fork this repo - on the top right corner of this page, click the **Fork** button.
-1. Both memebers of the group should clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `open src/index.html` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-1. Make sure both members of your team are collaborators on the forked repo.
+  The app utilizes responsive design to guarantee proper formatting across mobile and desktop devices.
 
-## Testing
+## Contributors
+* [Tyson McNutt](https://github.com/tysnj)
+* [Kendall Haworth](https://github.com/kendallha)
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
+## Technologies Used:
+* Vanilla JavaScript
+* HTML
+* CSS
+* Mocha & Chai for testing
+* NPM package management
+* Day.js package
+* Chart.js package
+* Datepicker.js package
 
-## Linting Your Code
+## Deploy Link:
+* [Click here to deploy demo](https://tysnj.github.io/fitlit/)
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
+## Install and Setup:
+1. Clone this [repository](https://github.com/tysnj/fitlit)
+2. Run `npm install`
+3. Run `npm test` to perform unit testing
+4. Run `open src/index.html` from the root of the project to run the program
 
-Your linter will look only at the JavaScript files you have within the `src` and the `test` directories.
+## Demonstration:
 
-## Data Model
+* Mobile View
+ ![GIF showing selecting date on mobile display](gifURL)
+* Desktop View
+ ![GIF showing selecting date on desktop](gifURL)
+* Responsive Design
+  ![GIF showing the layout responding to changing screen size](gifURL)
 
-**Users**
+## Learning Goals
+* The project spec & rubric can be found [here](https://frontend.turing.io/projects/fitlit.html)
+  * Implement ES6 classes that communicate to each other as needed
+  * Use object and array prototype methods to perform data manipulation
+  * Create a dashboard that is easy to use and displays information in a clear way on multiple screens
+  * Write modular, reusable code that follows SRP (Single Responsibility Principle)
+  * Implement a robust testing suite using TDD
 
-```
-[
-  {
-    "id": [number],
-    "name": [string],
-    "address": [string],
-    "email": [string],
-    "strideLength": [number - feet],
-    "dailyStepGoal": [number - steps],
-    "friends": [array - one-way connection to other user(s)]
-  },
-  ...more user data
-]
-```
+## Completed Extensions
+  * The application calculates and displays how many streaks of 3 or more days of activity the user has, and when the most recent streak ended
 
-**Activity**
+## Future Additions
+* Login page
+  * The user will provide an email address to view their data from the most recent day 
+* Friends display
+  * Visual display showing the user's friends and comparing stats
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numSteps": [number - steps],
-    "minutesActive": [number - minutes],
-    "flightsOfStairs": [number - flights]
-  },
-  ...more activity data
-]
-```
 
-**Hydration**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numOunces": [number - ounces]
-  },
-  ...more hydration data
-]
-```
-
-**Sleep**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "hoursSlept": [number - hours],
-    "sleepQuality": [number - unitless]
-  },
-  ...more sleep data
-]
-```
