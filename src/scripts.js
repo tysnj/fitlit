@@ -5,15 +5,12 @@ let currentSleepData = new Sleep(currentUser.id, sleepData);
 let currentActivityData = new Activity(currentUser.id, activityData);
 let date = `2019/09/22`;
 
-
-//CHART GLOBAL DEFAULTS
 Chart.defaults.global.defaultFontFamily = "Permanent Marker";
 Chart.defaults.global.defaultFontSize = 10;
 Chart.defaults.global.title.fontSize = 12;
 Chart.defaults.global.legend = false;
 Chart.defaults.global.defaultColor = "#f37981";
 
-//QUERY SELECTOR VARIABLES
 let userName = document.querySelector("#greeting");
 let userSection = document.querySelector("#userInfoSection");
 let waterLabel = document.querySelector("#waterLabel");
@@ -26,7 +23,6 @@ let avgSleepHours = document.querySelector("#avgSleepHours");
 let avgSleepQuality = document.querySelector("#avgSleepQuality");
 let stepStreak = document.querySelector("#stepStreak");
 
-//CHART QUERY SELECTORS
 let userBar = document.querySelector("#userBar").getContext('2d');
 let waterBar = document.querySelector("#waterBar").getContext('2d');
 let sleepBar = document.querySelector("#sleepBar").getContext('2d');
@@ -36,10 +32,8 @@ let weeklyStairs = document.querySelector("#weeklyStairs").getContext('2d');
 let minuteComparisonBar = document.querySelector("#minuteComparisonBar").getContext('2d');
 let stairsComparisonBar = document.querySelector("#stairsComparisonBar").getContext('2d');
 
-//EVENT LISTENERS
 window.addEventListener("load", displayUserData);
 
-// CALENDAR
 const dateSplitter = date => {
   let splitDate = date.split("/");
   let joinDate = splitDate.join(",");
@@ -62,7 +56,6 @@ const picker = datepicker(calendar, {
   }
 });
 
-//CHARTS
 const updateChart = () => {
   const activityBarData = {
     labels: ["Your Goal", "Your Steps", "Avg Goal", "Avg Steps"],
@@ -202,8 +195,6 @@ const updateChart = () => {
   stairComparisonChart.update(stairComparisonChart.data = stairCompData);
 };
 
-
-// const chartDisplay = () => {
 let userActivityBarChart = new Chart(userBar, {
   type: 'horizontalBar',
   data: {
@@ -475,13 +466,11 @@ let stairComparisonChart = new Chart(stairsComparisonBar, {
     }
   }
 });
-// };
 
-//FUNCTIONS
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1) + min); 
 }
 
 const switchUser = (userID) => {
@@ -552,8 +541,8 @@ function getWeeklyWaterTotals() {
 }
 
 function showDailySleepData() {
-  sleepHoursLabel.innerHTML = `${currentSleepData.getSleepTotal(date)} Hours`;
-  sleepQualityLabel.innerHTML = `${currentSleepData.getSleepQuality(date)} Stars`;
+  sleepHoursLabel.innerHTML = `${currentSleepData.getSleep(date, "hoursSlept")} Hours`;
+  sleepQualityLabel.innerHTML = `${currentSleepData.getSleep(date, "sleepQuality")} Stars`;
 }
 
 function displayMilesToday() {
@@ -576,12 +565,12 @@ function getUserActivityOverWeek(metric) {
 }
 
 function displayAvgSleepHoursAllTime() {
-  avgSleepHours.innerHTML = currentSleepData.calculateAvgHours();
+  avgSleepHours.innerHTML = currentSleepData.calculateSleepAvg("hoursSlept");
 }
 
 function displayAvgSleepQualityAllTime() {
   avgSleepQuality.innerHTML = Math.round
-  (currentSleepData.calculateAvgQuality());
+  (currentSleepData.calculateSleepAvg("sleepQuality"));
 }
 
 function getStepStreak() {
