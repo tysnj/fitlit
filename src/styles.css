@@ -132,7 +132,6 @@
     flex-direction: column;
     align-items: center;
     width: 99%;
-    margin-bottom: -98%;
   }
 
   .steps-comparison {
@@ -190,7 +189,7 @@
     justify-content: space-around;
     width: 100%;
     height: 100%;
-    margin-bottom: 2%;
+    margin-top: -59%;
   }
 
   .water-intake,
@@ -204,6 +203,7 @@
     justify-content: space-around;
     height: 20%;
     width: 100%;
+    padding-bottom: 35%;
   }
 
   .average-sleep-hours,
@@ -226,8 +226,12 @@
   }
 
   .spacer {
-    height: 30%;
-    position: fixed;
+    grid-area: spacer;
+    height: 10%;
+    width: 100%;
+    text-align: center;
+    margin-top: -45%;
+    margin-bottom: 3%;
   }
 
   /* User Data Section  */
@@ -243,7 +247,7 @@
     color: #f3bf89;
     margin-bottom: 0;
     height: 18%;
-    font-size: 13px;
+    font-size: 12px;
     clear: both;
     width: 100%;
   }
@@ -437,10 +441,13 @@
    }
 
    .spacer {
-     background-color: lightcoral;
+     /* background-color: lightcoral; */
      grid-area: spacer;
-     height: 100%;
+     margin-top: 10%;
+     height: 10%;
      width: 100%;
+     text-align: center;
+     font-size: 14pt;
    }
 
    .icon {
@@ -647,7 +654,7 @@
     align-items: center;
     text-align: center;
     width: 100%;
-    height: 3rem;
+    height: 2.5rem;
     position: fixed;
     bottom: 0;
   }
@@ -742,10 +749,13 @@
   }
 
   .spacer {
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
     grid-area: spacer;
-    height: 100%;
+    margin-top: 10%;
+    height: 10%;
     width: 100%;
+    text-align: center;
+    font-size: 14pt;
   }
 
   .icon {

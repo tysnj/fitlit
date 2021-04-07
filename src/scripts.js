@@ -1,9 +1,9 @@
 let allUsers = new UserRepository(userData);
 let currentUser = allUsers.users[getRandomIntInclusive(0, allUsers.users.length)];
-let date = `2019/09/22`;
 let currentHydrationData = new Hydration(currentUser.id, hydrationData);
 let currentSleepData = new Sleep(currentUser.id, sleepData);
 let currentActivityData = new Activity(currentUser.id, activityData);
+let date = `2019/09/22`;
 
 
 //CHART GLOBAL DEFAULTS
@@ -24,6 +24,7 @@ let minutesLabel = document.querySelector("#minutesLabel");
 let milesLabel = document.querySelector("#milesLabel");
 let avgSleepHours = document.querySelector("#avgSleepHours");
 let avgSleepQuality = document.querySelector("#avgSleepQuality");
+let stepStreak = document.querySelector("#stepStreak");
 
 //CHART QUERY SELECTORS
 let userBar = document.querySelector("#userBar").getContext('2d');
@@ -585,7 +586,6 @@ function displayAvgSleepQualityAllTime() {
 
 function getStepStreak() {
   let streaks = currentActivityData.findStepStreak()
-  // "Step it up"
-  /* something.innerText = */ console.log(`You have ${streaks.length} three day streaks to date!`)
-  /* somethingElse.innerText = */ console.log(`Most recent streak to date: ${streaks[0]}`)
+  data = `<p>You have ${streaks.length} three day streaks to date, most recent being ${streaks[0]}</p>`
+  stepStreak.innerHTML = data;
 }
