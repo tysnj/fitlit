@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="styles.css">
-      <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link rel="stylesheet" href="../node_modules/js-datepicker/dist/datepicker.min.css">
-      <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono&display=swap" rel="stylesheet">
-      <title>FitLit</title>
-  </head>
-  <body>
-    <div class="wrapper">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="../node_modules/js-datepicker/dist/datepicker.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <title>FitLit</title>
+</head>
+
+<body>
+  <div class="wrapper">
     <header class="header">
       <h2 id="greeting" class="greeting">Hey</h2>
       <h1 id="dateDisplay" class="date">Date</h1>
@@ -24,58 +26,58 @@
         <section class="daily-stats">
           <h2 class="stats">Today's Stats</h2>
           <div class="icons-list">
-          <div class="row">
-            <span class="daily-icon">
-             <img class="icon" src="../assets/running.png">
-              <label id="stepsLabel" class="icon-label">Steps</label>
-            </span>
-            <span class="daily-icon">
-              <img class="icon" src="../assets/clock--v2.png">
-              <label id="minutesLabel" class="icon-label">Min</label>
-            </span>
-            <span class="daily-icon">
-              <img class="icon" src="../assets/finish-flag.png">
-              <label id="milesLabel" class="icon-label">Miles</label>
-            </span>
+            <div class="row">
+              <span class="daily-icon">
+                <img class="icon" src="../assets/running.png">
+                <label id="stepsLabel" class="icon-label">Steps</label>
+              </span>
+              <span class="daily-icon">
+                <img class="icon" src="../assets/clock--v2.png">
+                <label id="minutesLabel" class="icon-label">Min</label>
+              </span>
+              <span class="daily-icon">
+                <img class="icon" src="../assets/finish-flag.png">
+                <label id="milesLabel" class="icon-label">Miles</label>
+              </span>
+            </div>
+            <div class="row">
+              <span class="daily-icon">
+                <img class="icon" src="../assets/water-glass.png">
+                <label id="waterLabel" class="icon-label">Oz.</label>
+              </span>
+              <span class="daily-icon">
+                <img class="icon" src="../assets/alarm-clock--v2.png">
+                <label id="sleepHoursLabel" class="icon-label">Hours</label>
+              </span>
+              <span class="daily-icon">
+                <img class="icon" src="../assets/bed--v2.png">
+                <label id="sleepQualityLabel" class="icon-label">Stars</label>
+              </span>
+            </div>
           </div>
-          <div class="row">
-            <span class="daily-icon">
-              <img class="icon" src="../assets/water-glass.png">
-              <label id="waterLabel" class="icon-label">Oz.</label>
-            </span>
-            <span class="daily-icon">
-              <img class="icon" src="../assets/alarm-clock--v2.png">
-              <label id="sleepHoursLabel" class="icon-label">Hours</label>
-            </span>
-            <span class="daily-icon">
-              <img class="icon" src="../assets/bed--v2.png">
-              <label id="sleepQualityLabel" class="icon-label">Stars</label>
-            </span>
-          </div>
-        </div>
         </section>
         <section class="weekly-activity">
           <div class="bar-charts">
-          <div class="steps-comparison">
-            <div class="weekly-header">
-              <h3 class="weekly-chart-title">Achievements</h3>
+            <div class="steps-comparison">
+              <div class="weekly-header">
+                <h3 class="weekly-chart-title">Achievements</h3>
+              </div>
+              <div class="steps-bar">
+                <canvas id="userBar" class="weekly-bar"></canvas>
+              </div>
             </div>
-            <div class="steps-bar">
-              <canvas id="userBar" class="weekly-bar"></canvas>
+            <div class="comparison-bar">
+              <span class="double-chart">
+                <canvas id="minuteComparisonBar" class="minutes-bar"></canvas>
+              </span>
+              <span class="double-chart">
+                <canvas id="stairsComparisonBar" class="stair-bar"></canvas>
+              </span>
             </div>
           </div>
-          <div class="comparison-bar">
-            <span class="double-chart">
-              <canvas id="minuteComparisonBar" class="minutes-bar"></canvas>
-            </span>
-            <span class="double-chart">
-              <canvas id="stairsComparisonBar" class="stair-bar"></canvas>
-            </span>
-          </div>
-        </div>
           <div class="line-chart-group">
             <div class="line-chart">
-            <canvas id="weeklySteps" class="weekly-line"></canvas>
+              <canvas id="weeklySteps" class="weekly-line"></canvas>
             </div>
             <div class="line-chart">
               <canvas id="weeklyMinutes" class="weekly-line"></canvas>
@@ -83,6 +85,8 @@
             <div class="line-chart">
               <canvas id="weeklyStairs" class="weekly-line"></canvas>
             </div>
+          </div>
+          <div class="spacer" id="stepStreak">
           </div>
         </section>
         <section class="weekly-water-sleep">
@@ -102,11 +106,8 @@
             <p id="avgSleepQuality" class="avg-number">100</p>
             <p class="quality-label">All-Time Average Quality</p>
           </span>
-          <div class="spacer"></div>
         </section>
-        <!-- <div class="spacer"></div> -->
       </main>
-      <!-- <div class="spacer"></div> -->
       <aside id="userInfoSection" class="user-info-section">
         <img class="icon" "arrow" src="../assets/arrow.png">
         <div class="left-side">
@@ -123,20 +124,23 @@
       </aside>
     </div>
   </div>
-    <script src="../node_modules/js-datepicker/dist/datepicker.min.js"></script>
-    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-    <script>dayjs().format()</script>
-    <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/hydration.js"></script>
-    <script type="text/javascript" src="../data/sleep.js"></script>
-    <script type="text/javascript" src="../data/activity.js"></script>
-    <script type="text/javascript" src="../data/user-test-data.js"></script>
-    <script type="text/javascript" src="./users.js"></script>
-    <script type="text/javascript" src="./user-repo.js"></script>
-    <script type="text/javascript" src="./hydration.js"></script>
-    <script type="text/javascript" src="./sleep.js"></script>
-    <script type="text/javascript" src="./activity.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script type="text/javascript" src="./scripts.js"></script>
-  </body>
+  <script src="../node_modules/js-datepicker/dist/datepicker.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+  <script>
+    dayjs().format()
+  </script>
+  <script type="text/javascript" src="../data/users.js"></script>
+  <script type="text/javascript" src="../data/hydration.js"></script>
+  <script type="text/javascript" src="../data/sleep.js"></script>
+  <script type="text/javascript" src="../data/activity.js"></script>
+  <script type="text/javascript" src="../data/user-test-data.js"></script>
+  <script type="text/javascript" src="./users.js"></script>
+  <script type="text/javascript" src="./user-repo.js"></script>
+  <script type="text/javascript" src="./hydration.js"></script>
+  <script type="text/javascript" src="./sleep.js"></script>
+  <script type="text/javascript" src="./activity.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script type="text/javascript" src="./scripts.js"></script>
+</body>
+
 </html>
