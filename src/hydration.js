@@ -1,5 +1,7 @@
-// var dayjs = require('dayjs');
-// dayjs().format();
+if (typeof module !== "undefined") {
+  var dayjs = require('dayjs');
+  dayjs().format();
+};
 
 class Hydration {
   constructor(userID, data) {

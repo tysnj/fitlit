@@ -1,6 +1,13 @@
 const activityTestData = [
   {
     "userID": 1,
+    "date": "2019/06/14",
+    "numSteps": 4000,
+    "minutesActive": 140,
+    "flightsOfStairs": 16
+  },
+  {
+    "userID": 1,
     "date": "2019/06/15",
     "numSteps": 3577,
     "minutesActive": 140,
@@ -26,6 +33,20 @@ const activityTestData = [
     "numSteps": 4112,
     "minutesActive": 220,
     "flightsOfStairs": 37
+  },
+  {
+    "userID": 1,
+    "date": "2019/06/17",
+    "numSteps": 14329,
+    "minutesActive": 168,
+    "flightsOfStairs": 18
+  },
+  {
+    "userID": 2,
+    "date": "2019/06/17",
+    "numSteps": 13750,
+    "minutesActive": 65,
+    "flightsOfStairs": 4
   }
 ];
 
