@@ -9,12 +9,16 @@ class Sleep {
     this.userSleep = this.allUserSleep.filter(datapoint => datapoint.userID === userID);
   }
 
-  calculateAvgHours() {
-    return Math.round((this.userSleep.reduce((acc, datapoint) => acc + datapoint.hoursSlept, 0)) / this.userSleep.length);
-  }
+  // calculateAvgHours() {
+  //   return Math.round((this.userSleep.reduce((acc, datapoint) => acc + datapoint.hoursSlept, 0)) / this.userSleep.length);
+  // }
 
-  calculateAvgQuality() {
-    return (this.userSleep.reduce((acc, datapoint) => acc + datapoint.sleepQuality, 0)) / this.userSleep.length;
+  // calculateAvgQuality() {
+  //   return (this.userSleep.reduce((acc, datapoint) => acc + datapoint.sleepQuality, 0)) / this.userSleep.length;
+  // }
+
+  calculateSleepAvg(metric) {
+    return Math.round((this.userSleep.reduce((acc, datapoint) => acc + datapoint[metric], 0)) / this.userSleep.length);
   }
 
   getSleepTotal(date) {

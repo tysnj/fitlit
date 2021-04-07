@@ -41,11 +41,13 @@ describe("Sleep", function() {
   });
 
   it("should be able to calculate a user's average hours slept per day over all time", function() {
-    expect(sleep.calculateAvgHours()).to.equal(5);
+    // expect(sleep.calculateAvgHours()).to.equal(5);
+    expect(sleep.calculateSleepAvg("hoursSlept")).to.equal(5);
   });
 
   it("should be able to calculate a user's average sleep quality over all time", function() {
-    expect(sleep.calculateAvgQuality()).to.equal(3);
+    // expect(sleep.calculateAvgQuality()).to.equal(3);
+    expect(sleep.calculateSleepAvg("sleepQuality")).to.equal(3);
   });
 
   it("should be able to find how many hours a user slept on a specific day", function() {
