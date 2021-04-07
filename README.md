@@ -1,7 +1,7 @@
 # FitLit Pair Project
 ## Overview
 
-  For this project, we created a fitness app using TDD  that displays metrics on activity levels, sleep, and hydration. Currently, the application selects a random user from the users datafile on page load. 
+  For this project, we created a fitness app using TDD  that displays metrics on activity levels, sleep, and hydration. Currently, the application selects a random user from the users datafile on page load.
 
   On page load, the most recent day of data is automatically displayed. The user can change the date by clicking on the calendar icon in the top right corner.
 
@@ -33,11 +33,11 @@
 ## Demonstration:
 
 * Mobile View
- ![GIF showing selecting date on mobile display](gifURL)
+ ![GIF showing selecting date on mobile display](docs/fitlit_demo_mobile.gif)
 * Desktop View
- ![GIF showing selecting date on desktop](gifURL)
+ ![GIF showing selecting date on desktop](docs/fitlit_demo_desktop.gif)
 * Responsive Design
-  ![GIF showing the layout responding to changing screen size](gifURL)
+  ![GIF showing the layout responding to changing screen size](docs/fitlit_responsive.gif)
 
 ## Learning Goals
 * The project spec & rubric can be found [here](https://frontend.turing.io/projects/fitlit.html)
@@ -52,8 +52,6 @@
 
 ## Future Additions
 * Login page
-  * The user will provide an email address to view their data from the most recent day 
+  * The user will provide an email address to view their data from the most recent day
 * Friends display
   * Visual display showing the user's friends and comparing stats
-
-
