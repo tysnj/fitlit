@@ -201,8 +201,9 @@
 
   .averages-section {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     height: 20%;
+    width: 100%;
   }
 
   .average-sleep-hours,
@@ -416,6 +417,7 @@
    }
 
    .water-intake {
+     margin-top: 25%;
      width: 60%;
    }
 
@@ -429,10 +431,9 @@
      flex-direction: column;
      justify-content: center;
      align-items: center;
-     margin-top: -35%;
      height: 100%;
      width: 100%;
-     margin-top: -35%;
+     margin-top: -10%;
    }
 
    .spacer {
@@ -453,7 +454,7 @@
 
    .weekly-header {
      margin-bottom: 0.2%;
-     margin-top: 4%;
+     margin-top: 13%;
      margin-bottom: -1%;
    }
 
@@ -501,26 +502,26 @@
    }
 
    .weekly-bar {
-     width: 220%;
-     height: 125%;
+     /* width: 220%;
+     height: 125%; */
    }
 
    .double-chart {
      display: flex;
      align-items: flex-end;
-     width: 100%;
-     height: 100%;
+     /* width: 100%;
+     height: 100%; */
    }
 
    .minutes-bar {
-     width: 150%;
-     height: 150%;
+     width: 100%;
+     height: 100%;
      margin-left: -7%;
    }
 
    .stair-bar {
-     width: 150%;
-     height: 150%;
+     width: 100%;
+     height: 100%;
      margin-left: 3%;
    }
 
@@ -532,7 +533,7 @@
      justify-content: center;
      align-items: center;
      text-align: center;
-     margin-top: -9%;
+     margin-top: -15%;
    }
 
    .avg-number {
@@ -721,11 +722,13 @@
   }
 
   .water-intake {
+    margin-top: -45%;
     width: 60%;
   }
 
   .sleep-data {
     width: 60%;
+    margin-bottom: -44%;
   }
 
   .averages-section {
@@ -755,9 +758,7 @@
   }
 
   .weekly-header {
-    margin-bottom: 0.2%;
     margin-top: 1%;
-    margin-bottom: -4%;
   }
 
   .line-chart-group {
@@ -781,7 +782,6 @@
   }
 
   .steps-comparison {
-    height: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -790,47 +790,41 @@
     margin-left: 4%;
   }
 
-  .steps-bar {
-    height: 100%;
-    width: 100%;
-    margin-top: -2%;
-  }
-
   .comparison-bar {
     display: flex;
     align-items: flex-end;
     width: 100%;
+    height: 100%;
     margin-left: 6%;
+    margin-top: 5%;
   }
 
   .weekly-bar {
-    width: 325%;
-    height: 225%;
+    width: 26em;
   }
 
   .double-chart {
     display: flex;
     align-items: flex-end;
-    width: 100%;
-    height: 100%;
+    width: 50%;
   }
 
   .minutes-bar {
-    width: 150%;
-    height: 150%;
+    width: 50%;
+    height: 100%;
     margin-left: -7%;
   }
 
   .stair-bar {
-    width: 150%;
-    height: 150%;
+    width: 50%;
+    height: 100%;
     margin-left: 3%;
   }
 
   .averages-section {
     height: 100%;
     width: 100%;
-    margin-top: 9%;
+    margin-top: 8%;
   }
 
   .average-sleep-hours,
@@ -860,6 +854,7 @@
 
   .quality-label {
     margin-top: -8%;
+    margin-bottom: 10%;
   }
 
   canvas {
