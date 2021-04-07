@@ -1,13 +1,13 @@
-// const chai = require("chai");
-// const expect = chai.expect;
+const chai = require("chai");
+const expect = chai.expect;
 
-// const dataFile = require("../data/sleep-test-data");
-// const sleepData = dataFile.sleepTestData;
-// const userDataFile = require("../data/user-test-data");
-// const users = userDataFile.userTestData;
+const dataFile = require("../data/sleep-test-data");
+const sleepData = dataFile.sleepTestData;
+const userDataFile = require("../data/user-test-data");
+const users = userDataFile.userTestData;
 
-// const Sleep = require("../src/sleep");
-// const UserRepository = require("../src/user-repo");
+const Sleep = require("../src/sleep");
+const UserRepository = require("../src/user-repo");
 
 describe("Sleep", function() {
   let userRepo, sleep;
@@ -16,11 +16,11 @@ describe("Sleep", function() {
     userRepo = new UserRepository(users);
     sleep = new Sleep(userRepo.users[0].id, sleepData)
   });
- 
+
   it("should be a function", function() {
     expect(Sleep).to.be.a("function");
   });
-  
+
   it("should be an instance of Sleep", function() {
     expect(sleep).to.be.an.instanceOf(Sleep);
   });
@@ -41,19 +41,19 @@ describe("Sleep", function() {
   });
 
   it("should be able to calculate a user's average hours slept per day over all time", function() {
-    expect(sleep.calculateAvgHours()).to.equal(5);
+    expect(sleep.calculateSleepAvg("hoursSlept")).to.equal(5);
   });
 
   it("should be able to calculate a user's average sleep quality over all time", function() {
-    expect(sleep.calculateAvgQuality()).to.equal(3);
+    expect(sleep.calculateSleepAvg("sleepQuality")).to.equal(3);
   });
 
   it("should be able to find how many hours a user slept on a specific day", function() {
-    expect(sleep.getSleepTotal(`2019/06/15`)).to.equal(6);
+    expect(sleep.getSleep(`2019/06/15`, "hoursSlept")).to.equal(6);
   });
 
   it("should be able to find a user's quality of sleep on a specific day", function() {
-    expect(sleep.getSleepQuality(`2019/06/15`)).to.equal(2.2);
+    expect(sleep.getSleep(`2019/06/15`, "sleepQuality")).to.equal(2);
   });
 
   it("should be able to find a user's hours slept per day and sleep quality over a week", function() {

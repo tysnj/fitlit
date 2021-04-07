@@ -1,13 +1,13 @@
-// const chai = require("chai");
-// const expect = chai.expect;
+const chai = require("chai");
+const expect = chai.expect;
 
-// const userDataFile = require("../data/user-test-data");
-// const users = userDataFile.userTestData;
-// const UserRepository = require("../src/user-repo");
+const userDataFile = require("../data/user-test-data");
+const users = userDataFile.userTestData;
+const UserRepository = require("../src/user-repo");
 
-// const dataFile = require("../data/activity-test-data");
-// const activityData = dataFile.activityTestData.reverse();
-// const Activity = require("../src/activity");
+const dataFile = require("../data/activity-test-data");
+const activityData = dataFile.activityTestData.reverse();
+const Activity = require("../src/activity");
 
 describe("Activity", function() {
   let userRepo, activity1, activity2;
@@ -31,6 +31,13 @@ describe("Activity", function() {
       [
         {
           "userID": 1,
+          "date": "2019/06/17",
+          "numSteps": 14329,
+          "minutesActive": 168,
+          "flightsOfStairs": 18
+        },
+        {
+          "userID": 1,
           "date": "2019/06/16",
           "numSteps": 6637,
           "minutesActive": 175,
@@ -40,6 +47,13 @@ describe("Activity", function() {
           "userID": 1,
           "date": "2019/06/15",
           "numSteps": 3577,
+          "minutesActive": 140,
+          "flightsOfStairs": 16
+        },
+        {
+          "userID": 1,
+          "date": "2019/06/14",
+          "numSteps": 4000,
           "minutesActive": 140,
           "flightsOfStairs": 16
         }
@@ -59,7 +73,7 @@ describe("Activity", function() {
 
   it("should calculate the minutes active averaged for a given week", function() {
     expect(activity1.getTimeActiveAvgByWeek("2019/06/15")).to.equal(140);
-    expect(activity1.getTimeActiveAvgByWeek("2019/06/16")).to.equal(158);
+    expect(activity1.getTimeActiveAvgByWeek("2019/06/16")).to.equal(152);
   });
 
   it("should tell if a user reached their step goal for a given day", function() {
@@ -69,9 +83,26 @@ describe("Activity", function() {
 
   it("should find all the days where they achieved their step goal", function () {
     expect(activity1.getDaysGoalAchieved(userRepo.users[0].dailyStepGoal)).to.
-      deep.equal([]);
+      deep.equal([
+        {
+          "userID": 1,
+          "date": "2019/06/17",
+          "numSteps": 14329,
+          "minutesActive": 168,
+          "flightsOfStairs": 18,
+          "day": 1
+        }
+      ]);
     expect(activity2.getDaysGoalAchieved(userRepo.users[1].dailyStepGoal)).to.
       deep.equal([
+        {
+          "userID": 2,
+          "date": "2019/06/17",
+          "numSteps": 13750,
+          "minutesActive": 65,
+          "flightsOfStairs": 4,
+          "day": 1
+        },
         {
           "userID": 2,
           "date": "2019/06/15",
@@ -105,6 +136,10 @@ describe("Activity", function() {
 
   it("should find average minutes active across all users for a given date", function() {
     expect(activity1.findAvgDataForAllByDay("2019/06/15", "minutesActive")).to.equal(139)
+  });
+
+  it("should find days that had increasing steps for 3 or more days", function() {
+    expect(activity1.findStepStreak()).to.deep.equal(["2019/06/17"]);
   });
 
 })
