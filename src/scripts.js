@@ -515,6 +515,7 @@ function greetUser(userID = 1) {
 function displayIDCard(userID = 1) {
   userSection.innerHTML =
   `<div class="left-side">
+    <!-- <img class="icon" "arrow" src="../assets/arrow.png"> -->
     <p class="user-info">ID: ${currentUser.id} </p>
     <p class="user-info">Name: ${currentUser.name}</p>
     <p class="user-info">Address: ${currentUser.address}</p>
@@ -528,7 +529,7 @@ function displayIDCard(userID = 1) {
 }
 
 function calculateStepGoal() {
-  return allUsers.users.reduce((acc, user) => acc + user.dailyStepGoal, 0) / 
+  return allUsers.users.reduce((acc, user) => acc + user.dailyStepGoal, 0) /
     allUsers.users.length;
 }
 
