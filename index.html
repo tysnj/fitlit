@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./src/styles.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="stylesheet" href="../node_modules/js-datepicker/dist/datepicker.min.css">
+  <link rel="stylesheet" href="./node_modules/js-datepicker/dist/datepicker.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono&display=swap" rel="stylesheet">
   <title>FitLit</title>
 </head>
@@ -17,8 +17,7 @@
       <h2 id="greeting" class="greeting">Hey</h2>
       <h1 id="dateDisplay" class="date">Date</h1>
       <div>
-        <!-- <input id="datePicker" class="date-picker" type="text"/> -->
-        <img id="calendar" class="calendar" src="../assets/calendar.png">
+        <img id="calendar" class="calendar" src="./assets/calendar.png">
       </div>
     </header>
     <div class="page">
@@ -28,29 +27,29 @@
           <div class="icons-list">
             <div class="row">
               <span class="daily-icon">
-                <img class="icon" src="../assets/running.png">
+                <img class="icon" alt="Icon showing running shoe" src="./assets/running.png">
                 <label id="stepsLabel" class="icon-label">Steps</label>
               </span>
               <span class="daily-icon">
-                <img class="icon" src="../assets/clock--v2.png">
+                <img class="icon" alt="Icon of clock" src="./assets/clock--v2.png">
                 <label id="minutesLabel" class="icon-label">Min</label>
               </span>
               <span class="daily-icon">
-                <img class="icon" src="../assets/finish-flag.png">
+                <img class="icon" alt="Icon of checkered finish flag" src="./assets/finish-flag.png">
                 <label id="milesLabel" class="icon-label">Miles</label>
               </span>
             </div>
             <div class="row">
               <span class="daily-icon">
-                <img class="icon" src="../assets/water-glass.png">
+                <img class="icon" alt="Icon of water glass" src="./assets/water-glass.png">
                 <label id="waterLabel" class="icon-label">Oz.</label>
               </span>
               <span class="daily-icon">
-                <img class="icon" src="../assets/alarm-clock--v2.png">
+                <img class="icon" alt="Alarm clock icon" src="./assets/alarm-clock--v2.png">
                 <label id="sleepHoursLabel" class="icon-label">Hours</label>
               </span>
               <span class="daily-icon">
-                <img class="icon" src="../assets/bed--v2.png">
+                <img class="icon" alt="Bed icon" src="./assets/bed--v2.png">
                 <label id="sleepQualityLabel" class="icon-label">Stars</label>
               </span>
             </div>
@@ -109,7 +108,6 @@
         </section>
       </main>
       <aside id="userInfoSection" class="user-info-section">
-        <img class="icon" "arrow" src="../assets/arrow.png">
         <div class="left-side">
           <p class="user-info">ID</p>
           <p class="user-info">Name</p>
@@ -124,23 +122,23 @@
       </aside>
     </div>
   </div>
-  <script src="../node_modules/js-datepicker/dist/datepicker.min.js"></script>
+  <script src="./node_modules/js-datepicker/dist/datepicker.min.js"></script>
   <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
   <script>
     dayjs().format()
   </script>
-  <script type="text/javascript" src="../data/users.js"></script>
-  <script type="text/javascript" src="../data/hydration.js"></script>
-  <script type="text/javascript" src="../data/sleep.js"></script>
-  <script type="text/javascript" src="../data/activity.js"></script>
-  <script type="text/javascript" src="../data/user-test-data.js"></script>
-  <script type="text/javascript" src="./users.js"></script>
-  <script type="text/javascript" src="./user-repo.js"></script>
-  <script type="text/javascript" src="./hydration.js"></script>
-  <script type="text/javascript" src="./sleep.js"></script>
-  <script type="text/javascript" src="./activity.js"></script>
+  <script type="text/javascript" src="./data/users.js"></script>
+  <script type="text/javascript" src="./data/hydration.js"></script>
+  <script type="text/javascript" src="./data/sleep.js"></script>
+  <script type="text/javascript" src="./data/activity.js"></script>
+  <script type="text/javascript" src="./data/user-test-data.js"></script>
+  <script type="text/javascript" src="./src/users.js"></script>
+  <script type="text/javascript" src="./src/user-repo.js"></script>
+  <script type="text/javascript" src="./src/hydration.js"></script>
+  <script type="text/javascript" src="./src/sleep.js"></script>
+  <script type="text/javascript" src="./src/activity.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script type="text/javascript" src="./scripts.js"></script>
+  <script type="text/javascript" src="./src/scripts.js"></script>
 </body>
 
 </html>

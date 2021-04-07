@@ -9,22 +9,13 @@ class Sleep {
     this.userSleep = this.allUserSleep.filter(datapoint => datapoint.userID === userID);
   }
 
-  calculateAvgHours() {
-    return Math.round((this.userSleep.reduce((acc, datapoint) => acc + datapoint.hoursSlept, 0)) / this.userSleep.length);
+  calculateSleepAvg(metric) {
+    return Math.round((this.userSleep.reduce((acc, datapoint) => acc + datapoint[metric], 0)) / this.userSleep.length);
   }
 
-  calculateAvgQuality() {
-    return (this.userSleep.reduce((acc, datapoint) => acc + datapoint.sleepQuality, 0)) / this.userSleep.length;
-  }
-
-  getSleepTotal(date) {
+  getSleep(date, metric) {
     const selectedDay = this.userSleep.find(datapoint => datapoint.date === date);
-    return Math.round(selectedDay.hoursSlept);
-  }
-
-  getSleepQuality(date) {
-    const selectedDay = this.userSleep.find(datapoint => datapoint.date === date);
-    return selectedDay.sleepQuality;
+    return Math.round(selectedDay[metric]);
   }
 
   getWeeklyDataForUser(date) {
@@ -49,10 +40,9 @@ class Sleep {
     }, []);
   }
 
-
   calculateAllAvgHours() {
     return Math.round((this.allUserSleep.reduce((acc, datapoint) => acc + datapoint.hoursSlept, 0)) / this.allUserSleep.length);
-}
+  }
 
   filterSleepQuality(date, userRepo) {
     const weeklyData = this.getWeeklyDataForAll(date);
