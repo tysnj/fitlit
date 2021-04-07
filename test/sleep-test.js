@@ -41,22 +41,18 @@ describe("Sleep", function() {
   });
 
   it("should be able to calculate a user's average hours slept per day over all time", function() {
-    // expect(sleep.calculateAvgHours()).to.equal(5);
     expect(sleep.calculateSleepAvg("hoursSlept")).to.equal(5);
   });
 
   it("should be able to calculate a user's average sleep quality over all time", function() {
-    // expect(sleep.calculateAvgQuality()).to.equal(3);
     expect(sleep.calculateSleepAvg("sleepQuality")).to.equal(3);
   });
 
   it("should be able to find how many hours a user slept on a specific day", function() {
-    // expect(sleep.getSleepTotal(`2019/06/15`)).to.equal(6);
     expect(sleep.getSleep(`2019/06/15`, "hoursSlept")).to.equal(6);
   });
 
   it("should be able to find a user's quality of sleep on a specific day", function() {
-    // expect(sleep.getSleepQuality(`2019/06/15`)).to.equal(2.2);
     expect(sleep.getSleep(`2019/06/15`, "sleepQuality")).to.equal(2);
   });
 
