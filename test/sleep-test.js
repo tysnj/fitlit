@@ -51,11 +51,13 @@ describe("Sleep", function() {
   });
 
   it("should be able to find how many hours a user slept on a specific day", function() {
-    expect(sleep.getSleepTotal(`2019/06/15`)).to.equal(6);
+    // expect(sleep.getSleepTotal(`2019/06/15`)).to.equal(6);
+    expect(sleep.getSleep(`2019/06/15`, "hoursSlept")).to.equal(6);
   });
 
   it("should be able to find a user's quality of sleep on a specific day", function() {
-    expect(sleep.getSleepQuality(`2019/06/15`)).to.equal(2.2);
+    // expect(sleep.getSleepQuality(`2019/06/15`)).to.equal(2.2);
+    expect(sleep.getSleep(`2019/06/15`, "sleepQuality")).to.equal(2);
   });
 
   it("should be able to find a user's hours slept per day and sleep quality over a week", function() {

@@ -21,14 +21,19 @@ class Sleep {
     return Math.round((this.userSleep.reduce((acc, datapoint) => acc + datapoint[metric], 0)) / this.userSleep.length);
   }
 
-  getSleepTotal(date) {
-    const selectedDay = this.userSleep.find(datapoint => datapoint.date === date);
-    return Math.round(selectedDay.hoursSlept);
-  }
+  // getSleepTotal(date) {
+  //   const selectedDay = this.userSleep.find(datapoint => datapoint.date === date);
+  //   return Math.round(selectedDay.hoursSlept);
+  // }
 
-  getSleepQuality(date) {
+  // getSleepQuality(date) {
+  //   const selectedDay = this.userSleep.find(datapoint => datapoint.date === date);
+  //   return selectedDay.sleepQuality;
+  // }
+
+  getSleep(date, metric) {
     const selectedDay = this.userSleep.find(datapoint => datapoint.date === date);
-    return selectedDay.sleepQuality;
+    return Math.round(selectedDay[metric]);
   }
 
   getWeeklyDataForUser(date) {
