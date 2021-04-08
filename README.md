@@ -28,7 +28,7 @@
 1. Clone this [repository](https://github.com/tysnj/fitlit)
 2. Run `npm install`
 3. Run `npm test` to perform unit testing
-4. Run `open src/index.html` from the root of the project to run the program
+4. Run `open index.html` from the root of the project to run the program
 
 ## Demonstration:
 
